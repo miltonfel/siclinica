@@ -86,6 +86,15 @@
             </main>
         </div>
 
+        <div class="modal" tabindex="-1" role="dialog" id="dlgLoading">
+            <div class="modal-dialog" role="document">
+                    <div class="modal-body">
+                            <img src="/storage/images/loading.gif" class="rounded mx-auto d-block" width="300" height="300" class="img-thumbnail">
+                    </div>
+            </div>
+        </div>
+
+
         <script src="{{ asset('js/app.js')}}" type="text/javascript"></script>
         @hasSection('javascript')
         @yield('javascript')

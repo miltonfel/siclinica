@@ -27,14 +27,14 @@ class CreatePacientes extends Migration
             $table->date('data_nascimento');
             $table->string('telefone1', 20);
             $table->string('telefone2', 20)->nullable();
-            $table->string('logradouro', 11);
+            $table->string('logradouro', 100);
             $table->integer('numero');
             $table->string('complemento', 20)->nullable();
             $table->string('bairro', 40);
             $table->string('cidade', 20);
             $table->string('uf', 2);
             $table->string('cep', 8);
-            $table->string('obs');
+            $table->string('obs')->nullable();
             $table->boolean('ativo');
             $table->unsignedBigInteger('convenio_id');
             $table->foreign('convenio_id')->references('id')->on('convenios');
