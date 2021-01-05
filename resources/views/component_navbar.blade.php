@@ -31,7 +31,7 @@
       </li>
 
       <li @if($current=="profissionais" ) class="nav-item active" @else class="nav-item" @endif>
-        <a class="nav-link" href="/prontuarios">Profissionais</a>
+        <a class="nav-link" href="/profissionais">Profissionais</a>
       </li>
 
       <li @if($current=="convenios" ) class="nav-item active" @else class="nav-item" @endif>

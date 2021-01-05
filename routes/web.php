@@ -21,6 +21,14 @@ Route::get('/pacientes', function () {
     return view('pacientes');
 });
 
+Route::get('/profissionais', function () {
+    return view('profissionais');
+});
+
+Route::get('/especialidades', function () {
+    return view('especialidades');
+});
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -28,7 +28,7 @@ class CreateProfissionais extends Migration
             $table->date('data_nascimento');
             $table->string('telefone1', 20);
             $table->string('telefone2', 20)->nullable();
-            $table->string('logradouro', 11);
+            $table->string('logradouro');
             $table->integer('numero');
             $table->string('complemento', 20)->nullable();
             $table->string('bairro', 40);
