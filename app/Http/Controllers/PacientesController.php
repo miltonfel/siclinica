@@ -36,7 +36,28 @@ class PacientesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pac = new Paciente();
+        $pac->nome = $request->input('nome');
+        $pac->sexo = $request->input('sexo');
+        $pac->data_nascimento = $request->input('data_nascimento');
+        $pac->convenio_id = $request->input('convenio_id');
+        $pac->cpf = $request->input('cpf');
+        $pac->password = $request->input('cpf');
+        $pac->rg = $request->input('rg');
+        $pac->telefone1 = $request->input('telefone1');
+        $pac->telefone2 = $request->input('telefone2');
+        $pac->cep = $request->input('cep');
+        $pac->logradouro = $request->input('logradouro');
+        $pac->numero = $request->input('numero');
+        $pac->complemento = $request->input('complemento');
+        $pac->bairro = $request->input('bairro');
+        $pac->cidade = $request->input('cidade');
+        $pac->uf = $request->input('uf');
+        $pac->email = $request->input('email');
+        $pac->obs = $request->input('obs');
+        $pac->ativo = "1";
+        $pac->save();
+        return json_encode($pac);
     }
 
     /**
@@ -47,7 +68,11 @@ class PacientesController extends Controller
      */
     public function show($id)
     {
-        //
+        $pac = Paciente::find($id);
+        if (isset($pac)){
+            return json_encode($pac);
+        }
+        return response ('Atleta não encontrado', 404);
     }
 
     /**
@@ -68,9 +93,35 @@ class PacientesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, $id)
     {
-        //
+        $pac = Paciente::find($id);
+        if (isset($pac)){
+            $pac->nome = $request->input('nome');
+            $pac->sexo = $request->input('sexo');
+            $pac->data_nascimento = $request->input('data_nascimento');
+            $pac->convenio_id = $request->input('convenio_id');
+            $pac->cpf = $request->input('cpf');
+            $pac->password = $request->input('cpf');
+            $pac->rg = $request->input('rg');
+            $pac->telefone1 = $request->input('telefone1');
+            $pac->telefone2 = $request->input('telefone2');
+            $pac->cep = $request->input('cep');
+            $pac->logradouro = $request->input('logradouro');
+            $pac->numero = $request->input('numero');
+            $pac->complemento = $request->input('complemento');
+            $pac->bairro = $request->input('bairro');
+            $pac->cidade = $request->input('cidade');
+            $pac->uf = $request->input('uf');
+            $pac->email = $request->input('email');
+            $pac->obs = $request->input('obs');
+            $pac->ativo = "1";
+            $pac->save();
+            return json_encode($pac);
+        }
+        return response ('Paciente não encontrado(a)', 404);
+        
     }
 
     /**
@@ -81,6 +132,11 @@ class PacientesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $pac = Paciente::find($id);
+         if (isset($pac)){
+           $pac->delete();
+           return response('OK', 200);
+       }
+       return response ('Paciente não encontrado(a)', 404);
     }
 }
