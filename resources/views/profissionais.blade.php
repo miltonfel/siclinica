@@ -34,33 +34,33 @@
 <div class="modal" tabindex="-1" role="dialog" id="dlgProfissionais">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form class="form-horizontal" id="formPacientes" enctype="multipart/form-data">
+            <form class="form-horizontal" id="formProfissionais" enctype="multipart/form-data">
                 <div class="modal-header">
-                    <h5 class="model-title">Cadastro de Paciente</h5>
+                    <h5 class="model-title">Cadastro de Profissional</h5>
                 </div>
                 <div class="modal-body">
 
                     <div class="media">
-                        <img src="/storage/images/no_image.png" class="align-self-center mr-3" height="150" width="150" ondblclick="teste()" id="fotoPaciente">
+                        <img src="/storage/images/no_image.png" class="align-self-center mr-3" height="150" width="150" ondblclick="teste()" id="fotoProfissional">
                         <div class="media-body">
                             <form class="form-horizontal">
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
                                         <label for="nome">Nome</label>
-                                        <input type="text" class="form-control" id="nomePaciente">
+                                        <input type="text" class="form-control" id="nomeProfissional">
                                     </div>
 
                                     <div class="form-group col-md-5">
-                                        <label for="sexoPaciente">Sexo</label>
-                                        <select id="sexoPaciente" class="form-control">
+                                        <label for="sexoProfissional">Sexo</label>
+                                        <select id="sexoProfissional" class="form-control">
                                             <option>Feminino</option>
                                             <option>Masculino</option>
                                         </select>
                                     </div>
 
                                     <div class="form-group col-md-7">
-                                        <label for="dataNascimentoPaciente">Data Nascimento</label>
-                                        <input type="date" id="dataNascimentoPaciente" class="form-control">
+                                        <label for="dataNascimentoProfissional">Data Nascimento</label>
+                                        <input type="date" id="dataNascimentoProfissional" class="form-control">
                                     </div>
 
                                 </div>
@@ -72,12 +72,12 @@
                         <input type="hidden" id="id" class="form-control">
                         <div class="form-group col-md-4">
                             <label for="cpf">CPF</label>
-                            <input type="number" class="form-control" id="cpfPaciente" placeholder="Somente nº">
+                            <input type="number" class="form-control" id="cpfProfissional" placeholder="Somente nº">
                         </div>
 
                         <div class="form-group col-md-4">
                             <label for="rg">RG</label>
-                            <input type="text" class="form-control" id="rgPaciente">
+                            <input type="text" class="form-control" id="rgProfissional">
                         </div>
 
                         <div class="form-group col-md-4">
@@ -92,17 +92,17 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="telefone1">Telefone</label>
-                            <input type="text" class="form-control" id="telefone1Paciente" placeholder="Somente nº">
+                            <input type="text" class="form-control" id="telefone1Profissional" placeholder="Somente nº">
                         </div>
 
                         <div class="form-group col-md-4">
                             <label for="telefone2">Telefone</label>
-                            <input type="text" class="form-control" id="telefone2Paciente" placeholder="Somente nº">
+                            <input type="text" class="form-control" id="telefone2Profissional" placeholder="Somente nº">
                         </div>
 
                         <div class="form-group col-md-4">
                             <label for="cep">CEP</label>
-                            <input type="number" class="form-control" id="cepPaciente" placeholder="Somente nº" name="cepPaciente" onblur=consultaCep($('#cepPaciente').val()) required>
+                            <input type="number" class="form-control" id="cepProfissional" placeholder="Somente nº" name="cepProfissional" onblur=consultaCep($('#cepProfissional').val()) required>
 
                             </select>
                         </div>
@@ -111,46 +111,46 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="lograouro">Logradouro</label>
-                            <input type="text" class="form-control" id="logradouroPaciente">
+                            <input type="text" class="form-control" id="logradouroProfissional">
                         </div>
                         <div class="form-group col-md-2">
                             <label for="numero">Nº</label>
-                            <input type="text" class="form-control" id="numeroEnderecoPaciente">
+                            <input type="text" class="form-control" id="numeroEnderecoProfissional">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="complemento">Complemento</label>
-                            <input type="text" class="form-control" id="complementoEnderecoPaciente">
+                            <input type="text" class="form-control" id="complementoEnderecoProfissional">
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group col-md-5">
                             <label for="bairro">Bairro</label>
-                            <input type="text" class="form-control" id="bairroPaciente">
+                            <input type="text" class="form-control" id="bairroProfissional">
                         </div>
                         <div class="form-group col-md-5">
                             <label for="cidade">Cidade</label>
-                            <input type="text" class="form-control" id="cidadePaciente">
+                            <input type="text" class="form-control" id="cidadeProfissional">
                         </div>
                         <div class="form-group col-md-2">
                             <label for="uf">UF</label>
-                            <input type="text" class="form-control" id="ufPaciente">
+                            <input type="text" class="form-control" id="ufProfissional">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="email">E-mail</label>
-                        <input type="email" class="form-control" id="emailPaciente">
+                        <input type="email" class="form-control" id="emailProfissional">
                     </div>
 
                     <div class="form-group">
                         <label for="obs">Obs.</label>
-                        <textarea class="form-control" id="obsPaciente" rows="3"></textarea>
+                        <textarea class="form-control" id="obsProfissional" rows="3"></textarea>
                     </div>
 
                     <p>
                         <button type="submit" class="btn btn-primary">Salvar</button>
-                        <button type="cancel" class="btn btn-secondary" data-dismiss="modal">Prontuário</button>
+                        <button type="cancel" class="btn btn-secondary" data-dismiss="modal">Agenda</button>
                         <button type="cancel" class="btn btn-success" data-dismiss="modal">Fechar</button>
                     </p>
                 </div>
@@ -162,7 +162,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <input type="hidden" id="idPaciente" class="form-control">
+                <input type="hidden" id="idProfissional" class="form-control">
                 <h5 class="modal-title">Confirmação</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -201,10 +201,10 @@
         else {
             $.getJSON('https://viacep.com.br/ws/' + cep + '/json/', function(data) {
                 if (!("erro" in data)) {
-                    $('#cidadePaciente').val(data.localidade);
-                    $('#logradouroPaciente').val(data.logradouro);
-                    $('#ufPaciente').val(data.uf);
-                    $('#bairroPaciente').val(data.bairro);
+                    $('#cidadeProfissional').val(data.localidade);
+                    $('#logradouroProfissional').val(data.logradouro);
+                    $('#ufProfissional').val(data.uf);
+                    $('#bairroProfissional').val(data.bairro);
                 } else alert("CEP não encontrado, favor conferir")
             });
         }
@@ -238,7 +238,7 @@
             "<td>" + pro.especialidade.descricao + "</td>" +
             "<td>" +
             '<button class="btn btn-sm btn-primary" style="margin: 0 5px;" onclick="editar(' + pro.id + ')">Editar</button>' +
-            '<button class="btn btn-sm btn-secondary" style="margin: 0 5px;" onclick="editar(' + pro.id + ')">Prontuário</button>' +
+            '<button class="btn btn-sm btn-secondary" style="margin: 0 5px;" onclick="editar(' + pro.id + ')">Agenda</button>' +
             '<button class="btn btn-sm btn-danger" style="margin: 0 5px;" onclick="confirmaExclusao(' + pro.id + ',\'' + pro.nome + '\')">Excluir</button>' +
             "</td>" +
             "</tr>";
@@ -248,107 +248,108 @@
     function novoProfissional() {
         $('#id').val('');
         $('#nomeProfissional').val('');
-        $('#nascimentoPaciente').val('');
-        $('#cpfPaciente').val('');
-        $('#rgPaciente').val('');
-        $('#telefone1Paciente').val('');
-        $('#telefone2Paciente').val('');
-        $('#cepPaciente').val('');
-        $('#logradouroPaciente').val('');
-        $('#numeroEnderecoPaciente').val('');
-        $('#complementoEnderecoPaciente').val('');
-        $('#bairroPaciente').val('');
-        $('#cidadePaciente').val('');
-        $('#ufPaciente').val('');
-        $('#emailPaciente').val('');
-        $('#obsPaciente').val('');
-        $('#dlgPacientes').modal("show");
+        $('#nascimentoProfissional').val('');
+        $('#cpfProfissional').val('');
+        $('#rgProfissional').val('');
+        $('#telefone1Profissional').val('');
+        $('#telefone2Profissional').val('');
+        $('#cepProfissional').val('');
+        $('#logradouroProfissional').val('');
+        $('#numeroEnderecoProfissional').val('');
+        $('#complementoEnderecoProfissional').val('');
+        $('#bairroProfissional').val('');
+        $('#cidadeProfissional').val('');
+        $('#ufProfissional').val('');
+        $('#emailProfissional').val('');
+        $('#obsProfissional').val('');
+        $('#dlgProfissionais').modal("show");
     }
 
     function editar(id) {
-        $.getJSON('api/pacientes/' + id, function(data) {
+        $.getJSON('api/profissionais/' + id, function(data) {
             $('#id').val(id);
-            $('#nomePaciente').val(data.nome);
-            $('#sexoPaciente').val(data.sexo);
-            $('#dataNascimentoPaciente').val(data.data_nascimento);
-            $('#convenioPaciente').val(data.convenio_id);
-            $('#cpfPaciente').val(data.cpf);
-            $('#rgPaciente').val(data.rg);
-            $('#telefone1Paciente').val(data.telefone1);
-            $('#telefone2Paciente').val(data.telefone2);
-            $('#cepPaciente').val(data.cep);
-            $('#logradouroPaciente').val(data.logradouro);
-            $('#numeroEnderecoPaciente').val(data.numero);
-            $('#complementoEnderecoPaciente').val(data.complemento);
-            $('#bairroPaciente').val(data.bairro);
-            $('#cidadePaciente').val(data.cidade);
-            $('#ufPaciente').val(data.uf);
-            $('#emailPaciente').val(data.email);
-            $('#obsPaciente').val(data.obs);
-            $('#dlgPacientes').modal("show");
+            $('#nomeProfissional').val(data.nome);
+            $('#sexoProfissional').val(data.sexo);
+            $('#dataNascimentoProfissional').val(data.data_nascimento);
+            $('#especialidade').val(data.especialidade_id);
+            $('#cpfProfissional').val(data.cpf);
+            $('#rgProfissional').val(data.rg);
+            $('#telefone1Profissional').val(data.telefone1);
+            $('#telefone2Profissional').val(data.telefone2);
+            $('#cepProfissional').val(data.cep);
+            $('#logradouroProfissional').val(data.logradouro);
+            $('#numeroEnderecoProfissional').val(data.numero);
+            $('#complementoEnderecoProfissional').val(data.complemento);
+            $('#bairroProfissional').val(data.bairro);
+            $('#cidadeProfissional').val(data.cidade);
+            $('#ufProfissional').val(data.uf);
+            $('#emailProfissional').val(data.email);
+            $('#obsProfissional').val(data.obs);
+            $('#dlgProfissionais').modal("show");
         });
     }
 
     function criarProfissional() {
         pac = {
-            nome: $('#nomePaciente').val(),
-            sexo: $('#sexoPaciente').val(),
-            data_nascimento: $('#dataNascimentoPaciente').val(),
-            convenio_id: $('#convenioPaciente').val(),
-            cpf: $('#cpfPaciente').val(),
-            rg: $('#rgPaciente').val(),
-            telefone1: $('#telefone1Paciente').val(),
-            telefone2: $('#telefone2Paciente').val(),
-            cep: $('#cepPaciente').val(),
-            logradouro: $('#logradouroPaciente').val(),
-            numero: $('#numeroEnderecoPaciente').val(),
-            complemento: $('#complementoEnderecoPaciente').val(),
-            bairro: $('#bairroPaciente').val(),
-            cidade: $('#cidadePaciente').val(),
-            uf: $('#ufPaciente').val(),
-            email: $('#emailPaciente').val(),
-            obs: $('#obsPaciente').val(),
+            nome: $('#nomeProfissional').val(),
+            sexo: $('#sexoProfissional').val(),
+            data_nascimento: $('#dataNascimentoProfissional').val(),
+            convenio_id: $('#convenioProfissional').val(),
+            cpf: $('#cpfProfissional').val(),
+            rg: $('#rgProfissional').val(),
+            telefone1: $('#telefone1Profissional').val(),
+            telefone2: $('#telefone2Profissional').val(),
+            cep: $('#cepProfissional').val(),
+            logradouro: $('#logradouroProfissional').val(),
+            numero: $('#numeroEnderecoProfissional').val(),
+            complemento: $('#complementoEnderecoProfissional').val(),
+            bairro: $('#bairroProfissional').val(),
+            cidade: $('#cidadeProfissional').val(),
+            uf: $('#ufProfissional').val(),
+            email: $('#emailProfissional').val(),
+            obs: $('#obsProfissional').val(),
         }
         console.log(pac);
         $.post('/api/profissionais', pac, function(data) {
             console.log(data);
-            paciente = JSON.parse(data);
-            //linha = montarLinha(paciente);
-            //$('#tabelaPacientes>tBody').append(linha);
+            Profissional = JSON.parse(data);
+            //linha = montarLinha(Profissional);
+            //$('#tabelaProfissionals>tBody').append(linha);
             document.location.reload(true);
         });
     }
 
     function salvarProfissional() {
-        pac = {
+        pro = {
             id: $("#id").val(),
-            nome: $('#nomePaciente').val(),
-            sexo: $('#sexoPaciente').val(),
-            data_nascimento: $('#dataNascimentoPaciente').val(),
-            convenio_id: $('#convenioPaciente').val(),
-            cpf: $('#cpfPaciente').val(),
-            rg: $('#rgPaciente').val(),
-            telefone1: $('#telefone1Paciente').val(),
-            telefone2: $('#telefone2Paciente').val(),
-            cep: $('#cepPaciente').val(),
-            logradouro: $('#logradouroPaciente').val(),
-            numero: $('#numeroEnderecoPaciente').val(),
-            complemento: $('#complementoEnderecoPaciente').val(),
-            bairro: $('#bairroPaciente').val(),
-            cidade: $('#cidadePaciente').val(),
-            uf: $('#ufPaciente').val(),
-            email: $('#emailPaciente').val(),
-            obs: $('#obsPaciente').val(),
+            nome: $('#nomeProfissional').val(),
+            sexo: $('#sexoProfissional').val(),
+            data_nascimento: $('#dataNascimentoProfissional').val(),
+            especialidade_id: $('#especialidade').val(),
+            cpf: $('#cpfProfissional').val(),
+            rg: $('#rgProfissional').val(),
+            telefone1: $('#telefone1Profissional').val(),
+            telefone2: $('#telefone2Profissional').val(),
+            cep: $('#cepProfissional').val(),
+            logradouro: $('#logradouroProfissional').val(),
+            numero: $('#numeroEnderecoProfissional').val(),
+            complemento: $('#complementoEnderecoProfissional').val(),
+            bairro: $('#bairroProfissional').val(),
+            cidade: $('#cidadeProfissional').val(),
+            uf: $('#ufProfissional').val(),
+            email: $('#emailProfissional').val(),
+            obs: $('#obsProfissional').val(),
         };
 
-        console.log(pac);
+        console.log(pro);
         $.ajax({
             type: "PUT",
-            url: "api/profissionais/" + pac.id,
+            url: "api/profissionais/" + pro.id,
             context: this,
-            data: pac,
+            data: pro,
             success: function(data) {
                 console.log("Profissional editado");
+                //console.log(JSON.parse(data));
                 document.location.reload(true);
             },
             error: function(error) {
@@ -357,20 +358,20 @@
         });
     }
 
-    $("#formPacientes").submit(function(event) {
+    $("#formProfissionais").submit(function(event) {
         event.preventDefault();
         if ($("#id").val() != '')
-            salvarPaciente();
+            salvarProfissional();
         else
-            criarPaciente();
-        $('#formPacientes').modal('hide');
+            criarProfissional();
+        $('#formProfissionais').modal('hide');
     });
 
 
     function confirmaExclusao(id, nome) {
-        console.log("Confirmação exclusão do paciente " + nome);
-        $('#idPaciente').val(id);
-        $('#mensagemConfirmacao').text("Confirma a exclusão do(a) paciente " + nome + "?");
+        console.log("Confirmação exclusão do Profissional " + nome);
+        $('#idProfissional').val(id);
+        $('#mensagemConfirmacao').text("Confirma a exclusão do(a) Profissional " + nome + "?");
         $('#dlgDeleteConfirm').modal('show')
     }
 

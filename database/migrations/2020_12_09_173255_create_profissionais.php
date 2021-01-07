@@ -35,8 +35,10 @@ class CreateProfissionais extends Migration
             $table->string('cidade', 20);
             $table->string('uf', 2);
             $table->string('cep', 8);
-            $table->string('obs');
+            $table->string('obs')->nullable();
             $table->boolean('ativo');
+            $table->unsignedBigInteger('especialidade_id');
+            $table->foreign('especialidade_id')->references('id')->on('especialidades');
         });
     }
 

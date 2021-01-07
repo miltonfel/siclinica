@@ -72,7 +72,7 @@ class PacientesController extends Controller
         if (isset($pac)){
             return json_encode($pac);
         }
-        return response ('Atleta não encontrado', 404);
+        return response ('Paciente não encontrado(a)', 404);
     }
 
     /**
