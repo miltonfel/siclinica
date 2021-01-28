@@ -29,6 +29,10 @@ Route::get('/especialidades', function () {
     return view('especialidades');
 });
 
+Route::get('/convenios', function () {
+    return view('convenios');
+});
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
