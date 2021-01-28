@@ -38,6 +38,10 @@
         <a class="nav-link" href="/convenios">Convênios</a>
       </li>
 
+      <li @if($current=="especialidades" ) class="nav-item active" @else class="nav-item" @endif>
+        <a class="nav-link" href="/especialidades">Especialidades</a>
+      </li>
+
     </ul>
   </div>
 

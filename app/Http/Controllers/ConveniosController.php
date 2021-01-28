@@ -13,7 +13,6 @@ class ConveniosController extends Controller
         return $convs->toJson();
     }
 
-
     public function store(Request $request)
     {
         $con = new Convenio();
