@@ -18,6 +18,7 @@ class PacientesController extends Controller
         return $pacs->toJson();
     }
 
+
     /**
      * Show the form for creating a new resource.
      *
@@ -68,7 +69,7 @@ class PacientesController extends Controller
      */
     public function show($id)
     {
-        $pac = Paciente::find($id);
+        $pac = Paciente::with(['convenio'])->where('id', '=', $id)->get();
         if (isset($pac)){
             return json_encode($pac);
         }

@@ -52,4 +52,5 @@ class ProfissionaisController extends Controller
         return response ('Profissional não encontrado(a)', 404);
     }
 
+
 }
