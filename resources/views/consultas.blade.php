@@ -27,7 +27,7 @@
 
     </div>
     <div class="card-footer">
-        <button class="btn btn-sm btn-primary" role="button" onclick=novaConsulta()>Nova Consulta</a>
+        <a button class="btn btn-sm btn-primary" role="button" href="/consulta_detalhe">Nova Consulta</a>
     </div>
 
 </div>

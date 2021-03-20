@@ -21,11 +21,15 @@
             <div class="media-body">
               <form class="form-horizontal">
                 <div class="form-row">
-                  <div class="form-group col-md-12">
+                  <div class="form-group col-md-8">
                     <label for="nome">Nome</label>
                     <input type="text" class="form-control" id="nomePaciente">
                   </div>
-
+                  <div class="form-group col-md-2">
+                    <a button class="btn btn-sm btn-primary" onclick="abrirBusca()">Buscar</button></a>
+                  </div>
+                </div>
+                <div class="form-row">
                   <div class="form-group col-md-5">
                     <label for="sexoPaciente">Sexo</label>
                     <select id="sexoPaciente" class="form-control">
@@ -33,7 +37,6 @@
                       <option>Masculino</option>
                     </select>
                   </div>
-
                   <div class="form-group col-md-7">
                     <label for="dataNascimentoPaciente">Data Nascimento</label>
                     <input type="date" id="dataNascimentoPaciente" class="form-control">
@@ -117,6 +120,31 @@
       </form>
     </div>
 
+<!-- formulário de busca de paciente -->
+    <div class="modal" tabindex="-1" role="dialog" id="dlgbuscapaciente">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <form class="form-horizontal" id="formbuscaPaciente" enctype="multipart/form-data">
+            <div class="modal-header">
+              <h5 class="model-title">Buscar Paciente</h5>
+            </div>
+            <div class="modal-body">
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <label for="nome">Nome</label>
+                  <input type="text" class="form-control" id="nomeBusca">
+                </div>
+              </div>
+              <p>
+                <button class="btn btn-primary" onclick='selecionarPaciente()'>Selecionar</button>
+                <button type="cancel" class="btn btn-success" data-dismiss="modal">Fechar</button>
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>ß
+
     @endsection
 
     @section('javascript')
@@ -133,7 +161,13 @@
         $('#dlgLoading').modal("hide");
       }
 
+      function selecionarPaciente() {
+        alert('Funcionou');
+      }
 
+      function abrirBusca() {
+        $('#dlgbuscapaciente').show();
+      }
 
       $(function() {
         //$('#dlgLoading').modal("show");
