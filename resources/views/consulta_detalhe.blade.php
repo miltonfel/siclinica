@@ -9,8 +9,6 @@
   </div>
   @endif
   <div>
-
-  teste teste
     <div class="modal-content">
       <form class="form-horizontal" id="formPacientes" enctype="multipart/form-data">
         <div class="modal-header">
