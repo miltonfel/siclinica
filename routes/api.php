@@ -22,3 +22,4 @@ Route::resource('/pacientes', 'App\Http\Controllers\PacientesController');
 Route::resource('/convenios', 'App\Http\Controllers\ConveniosController');
 Route::resource('/profissionais', 'App\Http\Controllers\ProfissionaisController');
 Route::resource('/especialidades', 'App\Http\Controllers\EspecialidadesController');
+Route::resource('/consultas', 'App\Http\Controllers\ConsultasController');

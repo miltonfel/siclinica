@@ -25,12 +25,20 @@ Route::get('/profissionais', function () {
     return view('profissionais');
 });
 
+Route::get('/consulta_detalhe', function () {
+    return view('consulta_detalhe');
+});
+
 Route::get('/especialidades', function () {
     return view('especialidades');
 });
 
 Route::get('/convenios', function () {
     return view('convenios');
+});
+
+Route::get('/consultas', function () {
+    return view('consultas');
 });
 
 Auth::routes();

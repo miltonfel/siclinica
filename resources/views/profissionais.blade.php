@@ -248,7 +248,7 @@
     function novoProfissional() {
         $('#id').val('');
         $('#nomeProfissional').val('');
-        $('#nascimentoProfissional').val('');
+        $('#dataNascimentoProfissional').val('');
         $('#cpfProfissional').val('');
         $('#rgProfissional').val('');
         $('#telefone1Profissional').val('');

@@ -18,7 +18,6 @@ class EspecialidadesController extends Controller
     {
         $esp = new Especialidade();
         $esp->descricao = $request->input('descricao');
-        $esp->ativo = "1";
         $esp->save();
         return json_encode($esp);
     }
@@ -37,7 +36,6 @@ class EspecialidadesController extends Controller
         $esp = Especialidade::find($id);
         if (isset($esp)){
             $esp->descricao = $request->input('descricao');
-            $esp->ativo = "1";
             $esp->save();
             return json_encode($esp);
         }

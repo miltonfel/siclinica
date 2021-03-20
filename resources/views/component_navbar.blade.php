@@ -18,17 +18,9 @@
         <a class="nav-link" href="/consultas">Consultas</a>
       </li>
 
-      <li @if($current=="prontuarios" ) class="nav-item active" @else class="nav-item" @endif>
-        <a class="nav-link" href="/prontuarios">Prontuários</a>
-      </li>
-
-      <li @if($current=="receitas" ) class="nav-item active" @else class="nav-item" @endif>
+      <!--<li @if($current=="receitas" ) class="nav-item active" @else class="nav-item" @endif>
         <a class="nav-link" href="/prontuarios">Receitas</a>
-      </li>
-
-      <li @if($current=="exames" ) class="nav-item active" @else class="nav-item" @endif>
-        <a class="nav-link" href="/prontuarios">Exames</a>
-      </li>
+      </li>-->
 
       <li @if($current=="profissionais" ) class="nav-item active" @else class="nav-item" @endif>
         <a class="nav-link" href="/profissionais">Profissionais</a>
