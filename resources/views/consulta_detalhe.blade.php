@@ -147,20 +147,14 @@
             </div>
             <div class="modal-body">
 
-              <table class="table table-ordered table-hover" id="tabelaBusca">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Nome</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
+              <div class="list-group" id="listaBusca">
+  
+                <lista>
                   <!-- Alimentado via JQuery-->
-                </tbody>
-              </table>
+                </lista>
+
               <p>
-                <button type="cancel" class="btn btn-success" data-dismiss="modal" onclick='recarregaPagina()'>Cancelar</button>
+                <button type="cancel" class="btn btn-success" style="margin-top:15px" data-dismiss="modal" onclick='recarregaPagina()'>Cancelar</button>
               </p>
             </div>
           </form>
@@ -207,17 +201,14 @@
           $('#ufPaciente').val(data[0].uf);
           $('#emailPaciente').val(data[0].email);
           $('#obsPaciente').val(data[0].obs);
+          $("#listaBusca>lista").empty();
         });
       }
 
       function montarLinha(pac) {
-        var linha = "<tr>" +
-          "<td>" + pac.id + "</td>" +
-          "<td>" + pac.nome + "</td>" +
-          "<td>" +
-          '<class="btn btn-sm btn-primary" style="margin: 0 5px;" onclick="selecionarPaciente(' + pac.id + ',\'' + pac.nome + '\')">Selecionar</button>' +
-          "</td>" +
-          "</tr>";
+        var linha = 
+        '<button type="button" class="list-group-item list-group-item-action" onclick="selecionarPaciente(' + pac.id + ',\'' + pac.nome + '\')">'+pac.nome+'</button>';
+
         return linha;
       }
 
@@ -229,7 +220,7 @@
             if (data.length > 0) {
               for (i = 0; i < data.length; i++) {
                 linha = montarLinha(data[i]);
-                $('#tabelaBusca>tBody').append(linha)
+                $('#listaBusca>lista').append(linha)
               }
               $(dlgbuscapaciente).modal('show');
               var carga = "Carga Concluída";
