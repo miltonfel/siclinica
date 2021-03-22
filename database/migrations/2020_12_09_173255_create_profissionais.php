@@ -17,7 +17,7 @@ class CreateProfissionais extends Migration
             $table->id();
             $table->timestamps();
             $table->string('nome');
-            $table->string('registro');
+            $table->string('registro')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

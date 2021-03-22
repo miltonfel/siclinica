@@ -18,7 +18,8 @@ class CreateConsultas extends Migration
             $table->timestamps();
             $table->dateTime('agendamento');
             $table->string('status');
-            $table->string('diagnostico');
+            $table->text('diagnostico')->nullable();
+            $table->text('motivo');
             $table->unsignedBigInteger('convenio_id');
             $table->foreign('convenio_id')->references('id')->on('convenios');
             $table->unsignedBigInteger('profissional_id');

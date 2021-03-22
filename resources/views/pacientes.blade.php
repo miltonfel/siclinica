@@ -268,25 +268,26 @@
     }
 
     function editar(id) {
+        console.log("EDIÇÂO id: "+id);
         $.getJSON('api/pacientes/' + id, function(data) {
             $('#id').val(id);
-            $('#nomePaciente').val(data.nome);
-            $('#sexoPaciente').val(data.sexo);
-            $('#dataNascimentoPaciente').val(data.data_nascimento);
-            $('#convenioPaciente').val(data.convenio_id);
-            $('#cpfPaciente').val(data.cpf);
-            $('#rgPaciente').val(data.rg);
-            $('#telefone1Paciente').val(data.telefone1);
-            $('#telefone2Paciente').val(data.telefone2);
-            $('#cepPaciente').val(data.cep);
-            $('#logradouroPaciente').val(data.logradouro);
-            $('#numeroEnderecoPaciente').val(data.numero);
-            $('#complementoEnderecoPaciente').val(data.complemento);
-            $('#bairroPaciente').val(data.bairro);
-            $('#cidadePaciente').val(data.cidade);
-            $('#ufPaciente').val(data.uf);
-            $('#emailPaciente').val(data.email);
-            $('#obsPaciente').val(data.obs);
+            $('#nomePaciente').val(data[0].nome);
+            $('#sexoPaciente').val(data[0].sexo);
+            $('#dataNascimentoPaciente').val(data[0].data_nascimento);
+            $('#convenioPaciente').val(data[0].convenio_id);
+            $('#cpfPaciente').val(data[0].cpf);
+            $('#rgPaciente').val(data[0].rg);
+            $('#telefone1Paciente').val(data[0].telefone1);
+            $('#telefone2Paciente').val(data[0].telefone2);
+            $('#cepPaciente').val(data[0].cep);
+            $('#logradouroPaciente').val(data[0].logradouro);
+            $('#numeroEnderecoPaciente').val(data[0].numero);
+            $('#complementoEnderecoPaciente').val(data[0].complemento);
+            $('#bairroPaciente').val(data[0].bairro);
+            $('#cidadePaciente').val(data[0].cidade);
+            $('#ufPaciente').val(data[0].uf);
+            $('#emailPaciente').val(data[0].email);
+            $('#obsPaciente').val(data[0].obs);
             $('#dlgPacientes').modal("show");
         });
     }
@@ -361,10 +362,13 @@
 
     $("#formPacientes").submit(function(event) {
         event.preventDefault();
-        if ($("#id").val() != '')
+        if ($("#id").val() != ''){
             salvarPaciente();
-        else
+        }
+        else{
             criarPaciente();
+        }
+        
         $('#formPacientes').modal('hide');
     });
 

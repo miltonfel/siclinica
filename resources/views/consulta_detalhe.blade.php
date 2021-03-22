@@ -119,8 +119,8 @@
           </div>
 
           <div class="form-group">
-            <label for="relatopaciente">Motivo relatado pelo paciente</label>
-            <textarea class="form-control" id="relatopaciente" rows="3"></textarea>
+            <label for="motivo">Motivo relatado pelo paciente</label>
+            <textarea class="form-control" id="motivo" rows="3"></textarea>
           </div>
 
           <div class="form-group">
@@ -129,9 +129,8 @@
           </div>
 
           <p>
-            <button type="submit" class="btn btn-primary">Salvar</button>
-            <button type="cancel" class="btn btn-secondary" data-dismiss="modal">Histórico</button>
-            <button type="cancel" class="btn btn-success" data-dismiss="modal">Fechar</button>
+            <class="btn btn-primary" onclick='criarConsulta()'>Cadastrar</button>
+            <button type="cancel" class="btn btn-success" data-dismiss="modal">Cancelar</button>
           </p>
         </div>
       </form>
@@ -148,15 +147,15 @@
             <div class="modal-body">
 
               <div class="list-group" id="listaBusca">
-  
+
                 <lista>
                   <!-- Alimentado via JQuery-->
                 </lista>
 
-              <p>
-                <button type="cancel" class="btn btn-success" style="margin-top:15px" data-dismiss="modal" onclick='recarregaPagina()'>Cancelar</button>
-              </p>
-            </div>
+                <p>
+                  <button type="cancel" class="btn btn-success" style="margin-top:15px" data-dismiss="modal" onclick='recarregaPagina()'>Cancelar</button>
+                </p>
+              </div>
           </form>
         </div>
       </div>
@@ -206,8 +205,8 @@
       }
 
       function montarLinha(pac) {
-        var linha = 
-        '<button type="button" class="list-group-item list-group-item-action" onclick="selecionarPaciente(' + pac.id + ',\'' + pac.nome + '\')">'+pac.nome+'</button>';
+        var linha =
+          '<button type="button" class="list-group-item list-group-item-action" onclick="selecionarPaciente(' + pac.id + ',\'' + pac.nome + '\')">' + pac.nome + '</button>';
 
         return linha;
       }
@@ -234,7 +233,6 @@
         } else(alert("Preencha o nome ou primeiro nome do paciente para buscar"));
       }
 
-
       function carregarProfissionais() {
         $.getJSON('/api/profissionais', function(data) {
           for (i = 0; i < data.length; i++) {
@@ -243,6 +241,29 @@
           }
         });
       }
+
+      function criarConsulta() {
+        datahoraconsulta = $('#dataConsulta').val() + ' '+ $('#horarioConsulta').val() + ':00'
+        console.log(datahoraconsulta);
+        if (datahoraconsulta != ' :00'){
+        con = {
+          agendamento: datahoraconsulta,
+          convenio_id: $('#convenioPaciente').val(),
+          profissional_id: $('#id').val(),
+          paciente_id: $('#profissionais').val(),
+          motivo: $('#motivo').val(),
+        }
+        console.log(con);
+        $.post('/api/cadastrarConsulta', con, function(data) {
+          console.log(data);
+          //paciente = JSON.parse(data);
+          //linha = montarLinha(paciente);
+
+        });
+      }
+      else alert ("Defina a data e o horário da consulta!");
+      }
+
 
       function recarregaPagina() {
         document.location.reload(true);

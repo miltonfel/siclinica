@@ -294,7 +294,7 @@
             nome: $('#nomeProfissional').val(),
             sexo: $('#sexoProfissional').val(),
             data_nascimento: $('#dataNascimentoProfissional').val(),
-            convenio_id: $('#convenioProfissional').val(),
+            especialidade_id: $('#especialidade').val(),
             cpf: $('#cpfProfissional').val(),
             rg: $('#rgProfissional').val(),
             telefone1: $('#telefone1Profissional').val(),
