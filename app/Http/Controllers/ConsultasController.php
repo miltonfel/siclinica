@@ -29,11 +29,9 @@ class ConsultasController extends Controller
         $con->profissional_id = $request->input('profissional_id');
         $con->paciente_id = $request->input('paciente_id');
         $con->motivo = $request->input('motivo');
-        $con->status = $request->input('Agendado');
-        
-      
-        $con->ativo = "1";
+        $con->status = 'Agendada';
         $con->save();
         return json_encode($con);
+        //return redirect('/consultas');
     }
 }

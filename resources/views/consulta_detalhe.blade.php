@@ -129,7 +129,7 @@
           </div>
 
           <p>
-            <class="btn btn-primary" onclick='criarConsulta()'>Cadastrar</button>
+            <a href class="btn btn-primary" onclick='criarConsulta()'>Cadastrar</a>
             <button type="cancel" class="btn btn-success" data-dismiss="modal">Cancelar</button>
           </p>
         </div>
@@ -249,15 +249,14 @@
         con = {
           agendamento: datahoraconsulta,
           convenio_id: $('#convenioPaciente').val(),
-          profissional_id: $('#id').val(),
-          paciente_id: $('#profissionais').val(),
+          paciente_id: $('#id').val(),
+          profissional_id: $('#profissionais').val(),
           motivo: $('#motivo').val(),
         }
         console.log(con);
         $.post('/api/cadastrarConsulta', con, function(data) {
-          console.log(data);
-          //paciente = JSON.parse(data);
-          //linha = montarLinha(paciente);
+          //console.log(data);
+          redirect('/consultas');
 
         });
       }
