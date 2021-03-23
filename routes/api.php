@@ -25,5 +25,5 @@ Route::resource('/especialidades', 'App\Http\Controllers\EspecialidadesControlle
 Route::resource('/consultas', 'App\Http\Controllers\ConsultasController');
 Route::get('/buscarPacienteNome/{nome}', 'App\Http\Controllers\ConsultasController@buscarPacienteNome');
 Route::post('/cadastrarConsulta', 'App\Http\Controllers\ConsultasController@cadastrarConsulta');
-Route::get('/consultaPorData/{data?}', 'App\Http\Controllers\ConsultasController@consultaPorData');
+Route::get('/consultaPorData/{data}/{idProfissional}', 'App\Http\Controllers\ConsultasController@consultaPorData');
 

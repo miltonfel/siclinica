@@ -2,7 +2,6 @@
 
 @section('body')
 
-
 <div class="card-body">
     @if (session('status'))
     <div class="alert alert-success" role="alert">
@@ -13,10 +12,18 @@
         <!-- Tabela Principal -->
         <table class="table table-ordered table-hover" id="tabelaConsultas">
             <thead>
+            <div class="form-row">
                 <div class="form-group col-md-3">
                     <label for="dataBusca">Data</label>
                     <input type="date" id="dataBusca" class="form-control" value={{date('y-M-d')}} onchange="carregarConsultas(loading)">
                 </div>
+                <div class="form-group col-md-5">
+                    <label for="nome">Profissional</label>
+                    <select id="profissionais" class="form-control" onchange="carregarConsultas(loading)">
+
+                    </select>
+                  </div>
+            </div>
                 <tr>
                     <th>#</th>
                     <th>Paciente</th>
@@ -57,7 +64,7 @@
     function carregarConsultas(callback) {
         dataConsultas = $('#dataBusca').val();
         //console.log(dataConsultas);
-        $.getJSON('/api/consultaPorData/'+dataConsultas, function(data) {
+        $.getJSON('/api/consultaPorData/'+dataConsultas+'/'+ $('#profissionais').val(), function(data) {
             $("#tabelaConsultas>tBody").empty();
             for (i = 0; i < data.length; i++) {
                 linha = montarLinha(data[i]);
@@ -94,9 +101,19 @@
         return linha;
     }
 
+    function carregarProfissionais() {
+        $.getJSON('/api/profissionais', function(data) {
+          for (i = 0; i < data.length; i++) {
+            opcao = '<option value="' + data[i].id + '">' + data[i].nome + '</option>';
+            $('#profissionais').append(opcao);
+          }
+        });
+      }
+
     $(function() {
         //$('#dlgLoading').modal("show");
-        carregarConsultas(loading);
+        //carregarConsultas(loading);
+        carregarProfissionais(loading);
     })
 </script>
 

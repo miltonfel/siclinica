@@ -15,8 +15,8 @@ class ConsultasController extends Controller
         return $conss->toJson();
     }
 
-    public function consultaPorData($data){
-        $conss = Consulta::with(['paciente'])->where('agendamento','like', $data.'%')->orderBy('agendamento', 'asc')->get();
+    public function consultaPorData($data, $idProfissional){
+        $conss = Consulta::with(['paciente'])->where('agendamento','like', $data.'%')->where('profissional_id', $idProfissional )->orderBy('agendamento', 'asc')->get();
         return $conss->toJson();
     }
 
