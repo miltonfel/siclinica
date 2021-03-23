@@ -27,6 +27,26 @@ class ConsultasController extends Controller
 
     }
 
+    public function cancelarConsulta($id){
+        $con = Consulta::find($id);
+        if (isset($con)){
+            $con->status = 'Cancelada';
+            $con->save();
+            return 'Consulta Cancelada';
+        }
+        return 'Erro ao cancelar consulta';
+    }
+
+    public function confirmarConsulta($id){
+        $con = Consulta::find($id);
+        if (isset($con)){
+            $con->status = 'Confirmada';
+            $con->save();
+            return 'Consulta Confirmada';
+        }
+        return 'Erro ao confirmar consulta';
+    }
+
     public function cadastrarConsulta(Request $request){
         $con = new Consulta();
         $con->agendamento = $request->input('agendamento');

@@ -26,4 +26,6 @@ Route::resource('/consultas', 'App\Http\Controllers\ConsultasController');
 Route::get('/buscarPacienteNome/{nome}', 'App\Http\Controllers\ConsultasController@buscarPacienteNome');
 Route::post('/cadastrarConsulta', 'App\Http\Controllers\ConsultasController@cadastrarConsulta');
 Route::get('/consultaPorData/{data}/{idProfissional}', 'App\Http\Controllers\ConsultasController@consultaPorData');
+Route::post('/cancelarConsulta/{id}', 'App\Http\Controllers\ConsultasController@cancelarConsulta');
+Route::post('/confirmarConsulta/{id}', 'App\Http\Controllers\ConsultasController@confirmarConsulta');
 
