@@ -11,7 +11,12 @@ class ConsultasController extends Controller
 {
     public function index()
     {
-        $conss = Consulta::with(['paciente'])->get();
+        $conss = Consulta::with(['paciente'])->orderBy('agendamento', 'asc')->get();
+        return $conss->toJson();
+    }
+
+    public function consultaPorData($data){
+        $conss = Consulta::with(['paciente'])->where('agendamento','like', $data.'%')->orderBy('agendamento', 'asc')->get();
         return $conss->toJson();
     }
 
@@ -31,7 +36,7 @@ class ConsultasController extends Controller
         $con->motivo = $request->input('motivo');
         $con->status = 'Agendada';
         $con->save();
-        return json_encode($con);
-        //return redirect('/consultas');
+        //return json_encode($con);
+        return view('/consultas');
     }
 }

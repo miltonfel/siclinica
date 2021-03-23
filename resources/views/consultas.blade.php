@@ -2,6 +2,7 @@
 
 @section('body')
 
+
 <div class="card-body">
     @if (session('status'))
     <div class="alert alert-success" role="alert">
@@ -9,9 +10,13 @@
     </div>
     @endif
     <div>
-        <!-- Tabela Principal apresentação -->
+        <!-- Tabela Principal -->
         <table class="table table-ordered table-hover" id="tabelaConsultas">
             <thead>
+                <div class="form-group col-md-3">
+                    <label for="dataBusca">Data</label>
+                    <input type="date" id="dataBusca" class="form-control" value={{date('y-M-d')}} onchange="carregarConsultas(loading)">
+                </div>
                 <tr>
                     <th>#</th>
                     <th>Paciente</th>
@@ -50,7 +55,10 @@
     }
 
     function carregarConsultas(callback) {
-        $.getJSON('/api/consultas', function(data) {
+        dataConsultas = $('#dataBusca').val();
+        //console.log(dataConsultas);
+        $.getJSON('/api/consultaPorData/'+dataConsultas, function(data) {
+            $("#tabelaConsultas>tBody").empty();
             for (i = 0; i < data.length; i++) {
                 linha = montarLinha(data[i]);
                 $('#tabelaConsultas>tBody').append(linha)
@@ -63,19 +71,19 @@
     function montarLinha(con) {
         data = con.agendamento;
         dia = con.agendamento.substring(8, 10);
-        mes = con.agendamento.substring(5,7);
+        mes = con.agendamento.substring(5, 7);
         ano = con.agendamento.substring(0, 4);
-        data = dia+"/"+mes+"/"+ano;
+        data = dia + "/" + mes + "/" + ano;
 
         horario = con.agendamento;
         hora = con.agendamento.substring(11, 13);
-        minuto = con.agendamento.substring(14,16);
-        horario = hora+":"+minuto;
+        minuto = con.agendamento.substring(14, 16);
+        horario = hora + ":" + minuto;
 
         var linha = "<tr>" +
             "<td>" + con.id + "</td>" +
             "<td>" + con.paciente.nome + "</td>" +
-            "<td>" + data + " - "+horario + "</td>" +
+            "<td>" + data + " - " + horario + "</td>" +
             "<td>" + con.status + "</td>" +
             "<td>" +
             '<button class="btn btn-sm btn-primary" style="margin: 0 5px;" onclick="editar(' + con.id + ')">Editar</button>' +

@@ -256,7 +256,6 @@
         console.log(con);
         $.post('/api/cadastrarConsulta', con, function(data) {
           //console.log(data);
-          redirect('/consultas');
 
         });
       }
