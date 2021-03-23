@@ -59,4 +59,16 @@ class ConsultasController extends Controller
         //return json_encode($con);
         return view('/consultas');
     }
+
+    public function update(Request $request, $id){
+        $con = Consulta::find($id);
+        if (isset($con)){
+            $con->status = 'Finalizada';
+            $con->diagnostico = $request->input('diagnostico');
+            $con->diagnostico = $request->input('motivo');
+            $con->save();
+            return json_encode($con);
+        }
+        return response ('Consulta não encontrado(a)', 404);
+    }
 }

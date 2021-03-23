@@ -11,6 +11,7 @@
     <div>
         <!-- Tabela Principal -->
         <table class="table table-ordered table-hover" id="tabelaConsultas">
+
             <thead>
                 <div class="form-row">
                     <div class="form-group col-md-3">
@@ -116,8 +117,8 @@
             "<td>" +
             '<button class="btn btn-sm btn-success" style="margin: 0 5px;" onclick="confirmaConsulta(' + con.id + ')">Confirmar</button>' +
             '<button class="btn btn-sm btn-danger" style="margin: 0 5px;" onclick="confirmaCancelamento(' + con.id + ',\'' + con.paciente.nome + '\')">Cancelar</button>' +
-            '<button class="btn btn-sm btn-primary" style="margin: 0 5px;" onclick="editar(' + con.id + ')">Acessar</button>' +
-            '<button class="btn btn-sm btn-secondary" style="margin: 0 5px;" onclick="prontuario(' + con.paciente_id + ')">Prontuário</button>' +
+            '<a class="btn btn-sm btn-primary" style="margin: 0 5px;" href="consulta_detalhe/' + con.id + '">Acessar</a>' +
+            '<button class="btn btn-sm btn-secondary" style="margin: 0 5px;" onclick="prontuario(' + con.paciente_id + ')">Histórico</button>' +
             "</td>" +
             "</tr>";
         return linha;
@@ -160,7 +161,7 @@
         document.location.reload(true);
 
       }
-
+      
     $(function() {
         //$('#dlgLoading').modal("show");
         carregarProfissionais(loading);
