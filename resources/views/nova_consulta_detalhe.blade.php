@@ -12,21 +12,28 @@
     <div class="modal-content">
       <form class="form-horizontal" id="formPacientes" enctype="multipart/form-data">
         <div class="modal-header">
+          <h5 class="model-title">Consulta</h5>
         </div>
-        <div class="modal-body">
+        <div class="modal-body"> Dados Paciente
+
           <div class="media">
             <img src="/storage/images/no_image.png" class="align-self-center mr-3" height="150" width="150" ondblclick="teste()" id="fotoPaciente">
             <div class="media-body">
               <form class="form-horizontal">
                 <div class="form-row">
                   <div class="form-group col-md-6">
-                    <input type="hidden" id="id" value={{$id}} class="form-control">
+                    <input type="hidden" id="id" class="form-control">
                     <label for="nome">Nome</label>
-                    <input type="text" class="form-control" id="nomePaciente" readonly>
+                    <input type="text" class="form-control" id="nomePaciente" placeholder="Digite o nome do paciente e clique em buscar">
+                  </div>
+                  <div class="form-group col-auto" style="margin-top:35px">
+                    <a button class="btn btn-sm btn-primary" onclick="abrirBusca()">Buscar</button></a>
                   </div>
                   <div class="form-group col-md-5">
                     <label for="nome">Profissional</label>
-                    <input type="text" id="profissionais" class="form-control" readonly>
+                    <select id="profissionais" class="form-control">
+
+                    </select>
                   </div>
                 </div>
                 <div class="form-row">
@@ -40,11 +47,11 @@
                   </div>
                   <div class="form-group col-md-3">
                     <label for="dataConsulta">Data Consulta</label>
-                    <input type="date" id="dataConsulta" class="form-control" readonly>
+                    <input type="date" id="dataConsulta" class="form-control">
                   </div>
                   <div class="form-group col-md-2">
                     <label for="horarioConsulta">Horário Consulta</label>
-                    <input type="time" id="horarioConsulta" class="form-control" readonly>
+                    <input type="time" id="horarioConsulta" class="form-control">
                   </div>
 
                 </div>
@@ -118,17 +125,41 @@
 
           <div class="form-group">
             <label for="obs">Quadro Clínico</label>
-            <textarea class="form-control" id="diagnostico" rows="3"></textarea>
+            <textarea class="form-control" id="quadroclinico" rows="3"></textarea>
           </div>
 
           <p>
-            <a href class="btn btn-success" onclick='finalizarConsulta({{$id}})'>Finalizar</a>
-            <button type="cancel" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+            <a href class="btn btn-primary" onclick='criarConsulta()'>Cadastrar</a>
+            <button type="cancel" class="btn btn-success" data-dismiss="modal">Cancelar</button>
           </p>
         </div>
       </form>
     </div>
 
+    <!-- formulário de busca de paciente -->
+    <div class="modal" tabindex="-1" id="dlgbuscapaciente">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <form class="form-horizontal" id="formbuscaPaciente" enctype="multipart/form-data">
+            <div class="modal-header">
+              <h5 class="model-title">Selecione o Paciente</h5>
+            </div>
+            <div class="modal-body">
+
+              <div class="list-group" id="listaBusca">
+
+                <lista>
+                  <!-- Alimentado via JQuery-->
+                </lista>
+
+                <p>
+                  <button type="cancel" class="btn btn-success" style="margin-top:15px" data-dismiss="modal" onclick='recarregaPagina()'>Cancelar</button>
+                </p>
+              </div>
+          </form>
+        </div>
+      </div>
+    </div>
 
     @endsection
 
@@ -146,58 +177,99 @@
         $('#dlgLoading').modal("hide");
       }
 
-      function abrirConsulta($id) {
-        $.getJSON('../api/abrirConsulta/' + $id, function(data) {
+      function selecionarPaciente($id, $nome) {
+        $(dlgbuscapaciente).modal('hide');
+        console.log('Paciente selecionado: ' + $nome);
+
+        $.getJSON('api/pacientes/' + $id, function(data) {
           $('#id').val(data[0].id);
-          $('#profissionais').val(data[0].profissional_id);
-          $('#dataConsulta').val((data[0].agendamento).slice(0, 10));
-          $('#horarioConsulta').val((data[0].agendamento).slice(11, 16));
-          $('#nomePaciente').val(data[0].paciente.nome);
-          $('#sexoPaciente').val(data[0].paciente.sexo);
-          $('#dataNascimentoPaciente').val(data[0].paciente.data_nascimento);
-          $('#convenioPaciente').val(data[0].paciente.convenio_id);
-          $('#telefone1Paciente').val(data[0].paciente.telefone1);
-          $('#telefone2Paciente').val(data[0].paciente.telefone2);
-          $('#cepPaciente').val(data[0].paciente.cep);
-          $('#logradouroPaciente').val(data[0].paciente.logradouro);
-          $('#numeroEnderecoPaciente').val(data[0].paciente.numero);
-          $('#complementoEnderecoPaciente').val(data[0].paciente.complemento);
-          $('#bairroPaciente').val(data[0].paciente.bairro);
-          $('#cidadePaciente').val(data[0].paciente.cidade);
-          $('#ufPaciente').val(data[0].paciente.uf);
-          $('#emailPaciente').val(data[0].paciente.email);
-          $('#motivo').val(data[0].motivo);
-          $('#diagnostico').val(data[0].diagnostico);
+          $('#nomePaciente').val(data[0].nome);
+          $('#sexoPaciente').val(data[0].sexo);
+          $('#dataNascimentoPaciente').val(data[0].data_nascimento);
+          $('#convenioPaciente').val(data[0].convenio.descricao);
+          $('#cpfPaciente').val(data[0].cpf);
+          $('#rgPaciente').val(data[0].rg);
+          $('#telefone1Paciente').val(data[0].telefone1);
+          $('#telefone2Paciente').val(data[0].telefone2);
+          $('#cepPaciente').val(data[0].cep);
+          $('#logradouroPaciente').val(data[0].logradouro);
+          $('#numeroEnderecoPaciente').val(data[0].numero);
+          $('#complementoEnderecoPaciente').val(data[0].complemento);
+          $('#bairroPaciente').val(data[0].bairro);
+          $('#cidadePaciente').val(data[0].cidade);
+          $('#ufPaciente').val(data[0].uf);
+          $('#emailPaciente').val(data[0].email);
+          $('#obsPaciente').val(data[0].obs);
+          $("#listaBusca>lista").empty();
         });
       }
 
-      function finalizarConsulta($id) {
-        event.preventDefault();
+      function montarLinha(pac) {
+        var linha =
+          '<button type="button" class="list-group-item list-group-item-action" onclick="selecionarPaciente(' + pac.id + ',\'' + pac.nome + '\')">' + pac.nome + '</button>';
+
+        return linha;
+      }
+
+      function abrirBusca() {
+        var nomePaciente = $('#nomePaciente').val();
+        if (nomePaciente != '') {
+          console.log("Buscar Paciente " + nomePaciente);
+          $.getJSON('/api/buscarPacienteNome/' + nomePaciente, function(data) {
+            if (data.length > 0) {
+              for (i = 0; i < data.length; i++) {
+                linha = montarLinha(data[i]);
+                $('#listaBusca>lista').append(linha)
+              }
+              $(dlgbuscapaciente).modal('show');
+              var carga = "Carga Concluída";
+            } else {
+              alert('Paciente não encontrado');
+              recarregaPagina();
+            }
+            //callback(carga);
+          });
+          //$('#dlgbuscapaciente').show();
+        } else(alert("Preencha o nome ou primeiro nome do paciente para buscar"));
+      }
+
+      function carregarProfissionais() {
+        $.getJSON('/api/profissionais', function(data) {
+          for (i = 0; i < data.length; i++) {
+            opcao = '<option value="' + data[i].id + '">' + data[i].nome + '</option>';
+            $('#profissionais').append(opcao);
+          }
+        });
+      }
+
+      function criarConsulta() {
+        datahoraconsulta = $('#dataConsulta').val() + ' '+ $('#horarioConsulta').val() + ':00'
+        console.log(datahoraconsulta);
+        if (datahoraconsulta != ' :00'){
         con = {
-          id: $id,
+          agendamento: datahoraconsulta,
+          convenio_id: $('#convenioPaciente').val(),
+          paciente_id: $('#id').val(),
+          profissional_id: $('#profissionais').val(),
           motivo: $('#motivo').val(),
-          diagnostico: $('#diagnostico').val(),
-        };
+        }
         console.log(con);
-        $.ajax({
-          type: "PUT",
-          url: "../api/consultas/" + con.id,
-          context: this,
-          data: con,
-          success: function(data) {
-            console.log("Consulta atualizada");
-            //document.location.reload(true);
-          },
-          error: function(error) {
-            console.log(error);
-          },
+        $.post('/api/cadastrarConsulta', con, function(data) {
+          //console.log(data);
+
         });
       }
+      else alert ("Defina a data e o horário da consulta!");
+      }
 
+
+      function recarregaPagina() {
+        document.location.reload(true);
+      }
 
       $(function() {
-        //console.log($('#id').val());
-        abrirConsulta($('#id').val());
+        //$('#dlgLoading').modal("show");
+        carregarProfissionais(loading);
       })
     </script>
 

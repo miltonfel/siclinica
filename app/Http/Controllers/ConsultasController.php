@@ -20,6 +20,11 @@ class ConsultasController extends Controller
         return $conss->toJson();
     }
 
+    public function abrirConsulta($id){
+        $con = Consulta::with(['paciente'])->where('id',$id)->get();
+        return $con->toJson();
+    }
+
     public function buscarPacienteNome($nome){
         //$nome = $nome+'/%';
         $pacs = DB::table('pacientes')->where('nome', 'like', $nome.'%' )->get();
@@ -64,8 +69,8 @@ class ConsultasController extends Controller
         $con = Consulta::find($id);
         if (isset($con)){
             $con->status = 'Finalizada';
+            $con->motivo = $request->input('motivo');
             $con->diagnostico = $request->input('diagnostico');
-            $con->diagnostico = $request->input('motivo');
             $con->save();
             return json_encode($con);
         }

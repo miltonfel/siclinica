@@ -131,9 +131,9 @@
         $('#dlgDeleteConfirm').modal('show')
     }
 
-    function confirmaConsulta(id){
-        $.post('/api/confirmarConsulta/'+id, function(data) {
-            alert (data);
+    function confirmaConsulta(id) {
+        $.post('/api/confirmarConsulta/' + id, function(data) {
+            alert(data);
         });
         carregarConsultas(loading);
 
@@ -141,12 +141,12 @@
 
     function cancelarConsulta(id) {
         //console.log("EXCLUINDO" + id);
-        $.post('/api/cancelarConsulta/'+id, function(data) {
-            $('#dlgDeleteConfirm').modal('hide');   
-            alert (data);
+        $.post('/api/cancelarConsulta/' + id, function(data) {
+            $('#dlgDeleteConfirm').modal('hide');
+            alert(data);
 
         });
-        carregarConsultas(loading);
+        carregarConsultas(callback);
     }
 
     function carregarProfissionais() {
@@ -161,12 +161,14 @@
     function recarregaPagina() {
         document.location.reload(true);
 
-      }
-      
+    }
+
     $(function() {
         //$('#dlgLoading').modal("show");
         carregarProfissionais(loading);
-        //carregarConsultas(loading);
+        setInterval(function() {
+            carregarConsultas(loading);
+        }, 60000);
     })
 </script>
 

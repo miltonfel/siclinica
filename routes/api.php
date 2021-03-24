@@ -28,4 +28,5 @@ Route::post('/cadastrarConsulta', 'App\Http\Controllers\ConsultasController@cada
 Route::get('/consultaPorData/{data}/{idProfissional}', 'App\Http\Controllers\ConsultasController@consultaPorData');
 Route::post('/cancelarConsulta/{id}', 'App\Http\Controllers\ConsultasController@cancelarConsulta');
 Route::post('/confirmarConsulta/{id}', 'App\Http\Controllers\ConsultasController@confirmarConsulta');
+Route::get('/abrirConsulta/{id}', 'App\Http\Controllers\ConsultasController@abrirConsulta');
 
