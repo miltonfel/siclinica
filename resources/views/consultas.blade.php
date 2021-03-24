@@ -134,8 +134,8 @@
     function confirmaConsulta(id){
         $.post('/api/confirmarConsulta/'+id, function(data) {
             alert (data);
-            recarregaPagina();
         });
+        carregarConsultas(loading);
 
     }
 
@@ -144,8 +144,9 @@
         $.post('/api/cancelarConsulta/'+id, function(data) {
             $('#dlgDeleteConfirm').modal('hide');   
             alert (data);
-            recarregaPagina();
+
         });
+        carregarConsultas(loading);
     }
 
     function carregarProfissionais() {
