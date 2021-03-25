@@ -14,7 +14,7 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
+            /*$table->id();
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
@@ -35,7 +35,17 @@ class CreateUsersTable extends Migration
             $table->string('uf', 2);
             $table->string('cep', 8);
             $table->unsignedBigInteger('user_type_id');
-            $table->foreign('user_type_id')->references('id')->on('user_types');
+            $table->foreign('user_type_id')->references('id')->on('user_types');*/
+            
+            $table->increments('id');
+            $table->string('name');
+            $table->string('google_id');
+            $table->string('email')->unique();
+            $table->string('password')->nullable();
+            $table->string('avatar')->nullable();
+            $table->string('avatar_original')->nullable();
+            $table->rememberToken();
+            $table->timestamps();
 
         });
     }

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +27,7 @@ Route::get('/profissionais', function () {
 });
 
 Route::get('/consulta_detalhe/{id?}', function ($id=null) {
-    if (isset ($id)) return view('consulta_detalhe', ['id' => $id]);
+    if (isset ($id)) return view('consulta_detalhe', ['id' => '$id']);
     else return view('nova_consulta_detalhe');
 });
 
@@ -45,3 +46,14 @@ Route::get('/consultas', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::get('/googlelogin', function () {
+    return Socialite::driver('google')->redirect();
+});
+
+Route::get('/auth/callback', function () {
+    $user = Socialite::driver('google')->user();
+
+    // $user->token
+});
