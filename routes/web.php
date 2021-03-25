@@ -55,5 +55,9 @@ Route::get('/googlelogin', function () {
 Route::get('/auth/callback', function () {
     $user = Socialite::driver('google')->user();
 
+    //echo "<img src= { $user->getAvatar()}><br>";
+    echo "<h1> Olá {$user->getName()} </h1>";
+    echo "<img src={$user->getAvatar()}>";
+
     // $user->token
 });
