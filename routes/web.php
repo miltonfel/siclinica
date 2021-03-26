@@ -52,12 +52,4 @@ Route::get('/googlelogin', function () {
     return Socialite::driver('google')->redirect();
 });
 
-Route::get('/auth/callback', function () {
-    $user = Socialite::driver('google')->user();
-
-    //echo "<img src= { $user->getAvatar()}><br>";
-    echo "<h1> Olá {$user->getName()} </h1>";
-    echo "<img src={$user->getAvatar()}>";
-
-    // $user->token
-});
+Route::get('/auth/callback', 'App\Http\Controllers\SocialiteController@handleProviderCallback');

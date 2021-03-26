@@ -29,4 +29,5 @@ Route::get('/consultaPorData/{data}/{idProfissional}', 'App\Http\Controllers\Con
 Route::post('/cancelarConsulta/{id}', 'App\Http\Controllers\ConsultasController@cancelarConsulta');
 Route::post('/confirmarConsulta/{id}', 'App\Http\Controllers\ConsultasController@confirmarConsulta');
 Route::get('/abrirConsulta/{id}', 'App\Http\Controllers\ConsultasController@abrirConsulta');
+Route::get('/verificaLogin/{nome}/{email}/{foto}', 'App\Http\Controllers\SocialiteController@handleProviderCallback');
 
