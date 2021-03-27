@@ -19,7 +19,8 @@ class SocialiteController extends Controller
         if ($existeCadastro == false){
             return "Iniciar casdastro novo";
         }
-        else return "Linkar ou login";
+        else if ($existeCadastro[0]->password == 'semacesso') return "Vincular cadastro";
+        else return "Prosseguir para login";
         
     }
 

@@ -43,7 +43,7 @@ class PacientesController extends Controller
         $pac->data_nascimento = $request->input('data_nascimento');
         $pac->convenio_id = $request->input('convenio_id');
         $pac->cpf = $request->input('cpf');
-        $pac->password = $request->input('cpf');
+        $pac->password = 'semacesso';
         $pac->rg = $request->input('rg');
         $pac->telefone1 = $request->input('telefone1');
         $pac->telefone2 = $request->input('telefone2');

@@ -21,7 +21,7 @@ class ProfissionaisController extends Controller
         $pro->data_nascimento = $request->input('data_nascimento');
         $pro->especialidade_id = $request->input('especialidade_id');
         $pro->cpf = $request->input('cpf');
-        $pro->password = $request->input('cpf');
+        $pro->password = 'semacesso';
         $pro->rg = $request->input('rg');
         $pro->telefone1 = $request->input('telefone1');
         $pro->telefone2 = $request->input('telefone2');
@@ -48,7 +48,6 @@ class ProfissionaisController extends Controller
             $pro->data_nascimento = $request->input('data_nascimento');
             $pro->especialidade_id = $request->input('especialidade_id');
             $pro->cpf = $request->input('cpf');
-            $pro->password = $request->input('cpf');
             $pro->rg = $request->input('rg');
             $pro->telefone1 = $request->input('telefone1');
             $pro->telefone2 = $request->input('telefone2');
@@ -74,5 +73,15 @@ class ProfissionaisController extends Controller
             return json_encode($pro);
         }
         return response('Profissional não encontrado(a)', 404);
+    }
+
+    public function destroy($id)
+    {
+        $pro = User::find($id);
+         if (isset($pro)){
+           $pro->delete();
+           return response('OK', 200);
+       }
+       return response ('Profissional não encontrado', 404);
     }
 }
