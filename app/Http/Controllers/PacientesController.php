@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Paciente;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PacientesController extends Controller
@@ -14,7 +14,7 @@ class PacientesController extends Controller
      */
     public function index()
     {
-        $pacs = Paciente::with(['convenio'])->get();
+        $pacs = User::with(['convenio'])->where('convenio_id','<>', null)->get();
         return $pacs->toJson();
     }
 
@@ -37,8 +37,8 @@ class PacientesController extends Controller
      */
     public function store(Request $request)
     {
-        $pac = new Paciente();
-        $pac->nome = $request->input('nome');
+        $pac = new User();
+        $pac->name = $request->input('name');
         $pac->sexo = $request->input('sexo');
         $pac->data_nascimento = $request->input('data_nascimento');
         $pac->convenio_id = $request->input('convenio_id');
@@ -56,7 +56,6 @@ class PacientesController extends Controller
         $pac->uf = $request->input('uf');
         $pac->email = $request->input('email');
         $pac->obs = $request->input('obs');
-        $pac->ativo = "1";
         $pac->save();
         return json_encode($pac);
     }
@@ -69,7 +68,7 @@ class PacientesController extends Controller
      */
     public function show($id)
     {
-        $pac = Paciente::with(['convenio'])->where('id', '=', $id)->get();
+        $pac = User::with(['convenio'])->where('id', '=', $id)->get();
         if (isset($pac)){
             return json_encode($pac);
         }
@@ -97,9 +96,9 @@ class PacientesController extends Controller
 
     public function update(Request $request, $id)
     {
-        $pac = Paciente::find($id);
+        $pac = User::find($id);
         if (isset($pac)){
-            $pac->nome = $request->input('nome');
+            $pac->name = $request->input('name');
             $pac->sexo = $request->input('sexo');
             $pac->data_nascimento = $request->input('data_nascimento');
             $pac->convenio_id = $request->input('convenio_id');
@@ -117,7 +116,6 @@ class PacientesController extends Controller
             $pac->uf = $request->input('uf');
             $pac->email = $request->input('email');
             $pac->obs = $request->input('obs');
-            $pac->ativo = "1";
             $pac->save();
             return json_encode($pac);
         }
@@ -133,7 +131,7 @@ class PacientesController extends Controller
      */
     public function destroy($id)
     {
-        $pac = Paciente::find($id);
+        $pac = User::find($id);
          if (isset($pac)){
            $pac->delete();
            return response('OK', 200);

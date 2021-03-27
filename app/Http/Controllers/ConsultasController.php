@@ -11,7 +11,7 @@ class ConsultasController extends Controller
 {
     public function index()
     {
-        $conss = Consulta::with(['paciente'])->orderBy('agendamento', 'asc')->get();
+        $conss = Consulta::with(['user'])->orderBy('agendamento', 'asc')->get();
         return $conss->toJson();
     }
 
@@ -25,9 +25,9 @@ class ConsultasController extends Controller
         return $con->toJson();
     }
 
-    public function buscarPacienteNome($nome){
-        //$nome = $nome+'/%';
-        $pacs = DB::table('pacientes')->where('nome', 'like', $nome.'%' )->get();
+    public function buscarPacienteNome($name){
+        //$name = $name+'/%';
+        $pacs = DB::table('users')->where('name', 'like', $name.'%' )->get();
         return $pacs->toJson();
 
     }

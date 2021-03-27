@@ -47,7 +47,7 @@
                             <form class="form-horizontal">
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
-                                        <label for="nome">Nome</label>
+                                        <label for="name">Nome</label>
                                         <input type="text" class="form-control" id="nomePaciente">
                                     </div>
 
@@ -235,13 +235,13 @@
     function montarLinha(pac) {
         var linha = "<tr>" +
             "<td>" + pac.id + "</td>" +
-            "<td>" + pac.nome + "</td>" +
+            "<td>" + pac.name + "</td>" +
             "<td>" + pac.convenio.descricao + "</td>" +
             "<td>" + pac.telefone1 + "</td>" +
             "<td>" +
             '<button class="btn btn-sm btn-primary" style="margin: 0 5px;" onclick="editar(' + pac.id + ')">Editar</button>' +
             '<button class="btn btn-sm btn-secondary" style="margin: 0 5px;" onclick="editar(' + pac.id + ')">Prontuário</button>' +
-            '<button class="btn btn-sm btn-danger" style="margin: 0 5px;" onclick="confirmaExclusao(' + pac.id + ',\'' + pac.nome + '\')">Excluir</button>' +
+            '<button class="btn btn-sm btn-danger" style="margin: 0 5px;" onclick="confirmaExclusao(' + pac.id + ',\'' + pac.name + '\')">Excluir</button>' +
             "</td>" +
             "</tr>";
         return linha;
@@ -271,7 +271,7 @@
         console.log("EDIÇÂO id: "+id);
         $.getJSON('api/pacientes/' + id, function(data) {
             $('#id').val(id);
-            $('#nomePaciente').val(data[0].nome);
+            $('#nomePaciente').val(data[0].name);
             $('#sexoPaciente').val(data[0].sexo);
             $('#dataNascimentoPaciente').val(data[0].data_nascimento);
             $('#convenioPaciente').val(data[0].convenio_id);
@@ -294,7 +294,7 @@
 
     function criarPaciente() {
         pac = {
-            nome: $('#nomePaciente').val(),
+            name: $('#nomePaciente').val(),
             sexo: $('#sexoPaciente').val(),
             data_nascimento: $('#dataNascimentoPaciente').val(),
             convenio_id: $('#convenioPaciente').val(),
@@ -325,7 +325,7 @@
     function salvarPaciente() {
         pac = {
             id: $("#id").val(),
-            nome: $('#nomePaciente').val(),
+            name: $('#nomePaciente').val(),
             sexo: $('#sexoPaciente').val(),
             data_nascimento: $('#dataNascimentoPaciente').val(),
             convenio_id: $('#convenioPaciente').val(),
@@ -373,10 +373,10 @@
     });
 
 
-    function confirmaExclusao(id, nome) {
-        console.log("Confirmação exclusão do paciente " + nome);
+    function confirmaExclusao(id, name) {
+        console.log("Confirmação exclusão do paciente " + name);
         $('#idPaciente').val(id);
-        $('#mensagemConfirmacao').text("Confirma a exclusão do(a) paciente " + nome + "?");
+        $('#mensagemConfirmacao').text("Confirma a exclusão do(a) paciente " + name + "?");
         $('#dlgDeleteConfirm').modal('show')
     }
 

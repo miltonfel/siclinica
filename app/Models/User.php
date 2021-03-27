@@ -10,6 +10,12 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
+    function convenio(){
+        return $this->belongsTo('App\Models\Convenio');
+    }
+    function especialidade(){
+        return $this->belongsTo('App\Models\Especialidade');
+    }
 
     /**
      * The attributes that are mass assignable.

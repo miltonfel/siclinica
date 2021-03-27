@@ -27,7 +27,7 @@ Route::get('/profissionais', function () {
 });
 
 Route::get('/consulta_detalhe/{id?}', function ($id=null) {
-    if (isset ($id)) return view('consulta_detalhe', ['id' => '$id']);
+    if (isset ($id)) return view('consulta_detalhe', ['id' => $id]);
     else return view('nova_consulta_detalhe');
 });
 

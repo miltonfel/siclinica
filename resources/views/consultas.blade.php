@@ -19,7 +19,7 @@
                         <input type="date" id="dataBusca" class="form-control" value={{date('Y-m-d')}} onchange="carregarConsultas(loading)">
                     </div>
                     <div class="form-group col-md-5">
-                        <label for="nome">Profissional</label>
+                        <label for="name">Profissional</label>
                         <select id="profissionais" class="form-control" onchange="carregarConsultas(loading)">
                             <option selected>Selecione o profissional</option>
                         </select>
@@ -111,12 +111,12 @@
 
         var linha = "<tr>" +
             " <!--<td>" + con.id + "</td>-->" +
-            "<td>" + con.paciente.nome + "</td>" +
+            "<td>" + con.paciente.name + "</td>" +
             "<td>" + data + " - " + horario + "</td>" +
             "<td>" + con.status + "</td>" +
             "<td>" +
             '<button class="btn btn-sm btn-success" style="margin: 0 5px;" onclick="confirmaConsulta(' + con.id + ')">Confirmar</button>' +
-            '<button class="btn btn-sm btn-danger" style="margin: 0 5px;" onclick="confirmaCancelamento(' + con.id + ',\'' + con.paciente.nome + '\')">Cancelar</button>' +
+            '<button class="btn btn-sm btn-danger" style="margin: 0 5px;" onclick="confirmaCancelamento(' + con.id + ',\'' + con.paciente.name + '\')">Cancelar</button>' +
             '<a class="btn btn-sm btn-primary" style="margin: 0 5px;" href="consulta_detalhe/' + con.id + '">Acessar</a>' +
             '<button class="btn btn-sm btn-secondary" style="margin: 0 5px;" onclick="prontuario(' + con.paciente_id + ')">Histórico</button>' +
             "</td>" +
@@ -124,10 +124,10 @@
         return linha;
     }
 
-    function confirmaCancelamento(id, nome) {
-        console.log("Confirmação exclusão da consulta do paciente " + nome);
+    function confirmaCancelamento(id, name) {
+        console.log("Confirmação exclusão da consulta do paciente " + name);
         $('#idConsultaCancelamento').val(id);
-        $('#mensagemConfirmacao').text("Confirma o cancelamento da consulta do paciente " + nome + "?");
+        $('#mensagemConfirmacao').text("Confirma o cancelamento da consulta do paciente " + name + "?");
         $('#dlgDeleteConfirm').modal('show')
     }
 
@@ -146,13 +146,13 @@
             alert(data);
 
         });
-        carregarConsultas(callback);
+        carregarConsultas(loading);
     }
 
     function carregarProfissionais() {
         $.getJSON('/api/profissionais', function(data) {
             for (i = 0; i < data.length; i++) {
-                opcao = '<option value="' + data[i].id + '">' + data[i].nome + '</option>';
+                opcao = '<option value="' + data[i].id + '">' + data[i].name + '</option>';
                 $('#profissionais').append(opcao);
             }
         });

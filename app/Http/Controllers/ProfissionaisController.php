@@ -3,20 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Profissional;
+use App\Models\User;
 
 class ProfissionaisController extends Controller
 {
     public function index()
     {
-        $profs = Profissional::with(['especialidade'])->get();
+        $profs = User::with(['especialidade'])->where('especialidade_id','<>', null)->get();
         return $profs->toJson();
     }
 
     public function store(Request $request)
     {
-        $pro = new Profissional();
-        $pro->nome = $request->input('nome');
+        $pro = new User();
+        $pro->name = $request->input('name');
         $pro->sexo = $request->input('sexo');
         $pro->data_nascimento = $request->input('data_nascimento');
         $pro->especialidade_id = $request->input('especialidade_id');
@@ -34,7 +34,6 @@ class ProfissionaisController extends Controller
         $pro->uf = $request->input('uf');
         $pro->email = $request->input('email');
         $pro->obs = $request->input('obs');
-        $pro->ativo = "1";
         $pro->save();
         return json_encode($pro);
     }
@@ -42,9 +41,9 @@ class ProfissionaisController extends Controller
 
     public function update(Request $request, $id)
     {
-        $pro = Profissional::find($id);
+        $pro = User::find($id);
         if (isset($pro)) {
-            $pro->nome = $request->input('nome');
+            $pro->name = $request->input('name');
             $pro->sexo = $request->input('sexo');
             $pro->data_nascimento = $request->input('data_nascimento');
             $pro->especialidade_id = $request->input('especialidade_id');
@@ -62,7 +61,6 @@ class ProfissionaisController extends Controller
             $pro->uf = $request->input('uf');
             $pro->email = $request->input('email');
             $pro->obs = $request->input('obs');
-            $pro->ativo = "1";
             $pro->save();
             return json_encode($pro);
         }
@@ -71,7 +69,7 @@ class ProfissionaisController extends Controller
 
     public function show($id)
     {
-        $pro = Profissional::find($id);
+        $pro = User::find($id);
         if (isset($pro)) {
             return json_encode($pro);
         }

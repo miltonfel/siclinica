@@ -152,7 +152,7 @@
           $('#profissionais').val(data[0].profissional_id);
           $('#dataConsulta').val((data[0].agendamento).slice(0, 10));
           $('#horarioConsulta').val((data[0].agendamento).slice(11, 16));
-          $('#nomePaciente').val(data[0].paciente.nome);
+          $('#nomePaciente').val(data[0].paciente.name);
           $('#sexoPaciente').val(data[0].paciente.sexo);
           $('#dataNascimentoPaciente').val(data[0].paciente.data_nascimento);
           $('#convenioPaciente').val(data[0].paciente.convenio_id);

@@ -23,14 +23,14 @@
                 <div class="form-row">
                   <div class="form-group col-md-6">
                     <input type="hidden" id="id" class="form-control">
-                    <label for="nome">Nome</label>
+                    <label for="name">Nome</label>
                     <input type="text" class="form-control" id="nomePaciente" placeholder="Digite o nome do paciente e clique em buscar">
                   </div>
                   <div class="form-group col-auto" style="margin-top:35px">
                     <a button class="btn btn-sm btn-primary" onclick="abrirBusca()">Buscar</button></a>
                   </div>
                   <div class="form-group col-md-5">
-                    <label for="nome">Profissional</label>
+                    <label for="name">Profissional</label>
                     <select id="profissionais" class="form-control">
 
                     </select>
@@ -177,13 +177,13 @@
         $('#dlgLoading').modal("hide");
       }
 
-      function selecionarPaciente($id, $nome) {
+      function selecionarPaciente($id, $name) {
         $(dlgbuscapaciente).modal('hide');
-        console.log('Paciente selecionado: ' + $nome);
+        console.log('Paciente selecionado: ' + $name);
 
         $.getJSON('api/pacientes/' + $id, function(data) {
           $('#id').val(data[0].id);
-          $('#nomePaciente').val(data[0].nome);
+          $('#nomePaciente').val(data[0].name);
           $('#sexoPaciente').val(data[0].sexo);
           $('#dataNascimentoPaciente').val(data[0].data_nascimento);
           $('#convenioPaciente').val(data[0].convenio.descricao);
@@ -206,7 +206,7 @@
 
       function montarLinha(pac) {
         var linha =
-          '<button type="button" class="list-group-item list-group-item-action" onclick="selecionarPaciente(' + pac.id + ',\'' + pac.nome + '\')">' + pac.nome + '</button>';
+          '<button type="button" class="list-group-item list-group-item-action" onclick="selecionarPaciente(' + pac.id + ',\'' + pac.name + '\')">' + pac.name + '</button>';
 
         return linha;
       }
@@ -236,7 +236,7 @@
       function carregarProfissionais() {
         $.getJSON('/api/profissionais', function(data) {
           for (i = 0; i < data.length; i++) {
-            opcao = '<option value="' + data[i].id + '">' + data[i].nome + '</option>';
+            opcao = '<option value="' + data[i].id + '">' + data[i].name + '</option>';
             $('#profissionais').append(opcao);
           }
         });

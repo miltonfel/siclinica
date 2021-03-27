@@ -9,6 +9,6 @@ class Convenio extends Model
 {
     use HasFactory;
     function pacientes(){
-        return $this->hasMany('App\Models\Paciente')->orderBy('descricao', 'asc');
+        return $this->hasMany('App\Models\User')->orderBy('descricao', 'asc');
     }
 }
