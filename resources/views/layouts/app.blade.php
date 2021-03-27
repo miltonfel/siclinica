@@ -26,7 +26,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                <img src="../storage/images/clinic24.png" width=24 height=24>   {{ config('app.name', 'Laravel') }}
+                    <img src="../storage/images/clinic24.png" width=24 height=24> {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -54,21 +54,22 @@
                         </li>
                         @endif
                         @else
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <li class="nav-item">
+                            <a class="nav-link" role="button" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
                             </a>
+                        </li>
 
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                        <li>
+                            <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
+                                {{ __('Logout') }}
+                            </a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                            </div>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+
                         </li>
                         @endguest
                     </ul>
@@ -88,9 +89,9 @@
 
         <div class="modal" tabindex="-1" role="dialog" id="dlgLoading">
             <div class="modal-dialog" role="document">
-                    <div class="modal-body">
-                            <img src="/storage/images/loading.gif" class="rounded mx-auto d-block" width="300" height="300" class="img-thumbnail">
-                    </div>
+                <div class="modal-body">
+                    <img src="/storage/images/loading.gif" class="rounded mx-auto d-block" width="300" height="300" class="img-thumbnail">
+                </div>
             </div>
         </div>
 
@@ -104,9 +105,9 @@
             @yield('content')
         </main>
     </div>
-    
-    <div class="card-footer" style="background:white" >
-        <div class="text-muted" >TCC Desenvolvedor Web Full Stack - PUC Minas | Aluno: Milton Felipe Pyramo Ferreira</div>
-      </div>
+
+    <div class="card-footer" style="background:white">
+        <div class="text-muted">TCC Desenvolvedor Web Full Stack - PUC Minas | Aluno: Milton Felipe Pyramo Ferreira</div>
+    </div>
 
 </html>
