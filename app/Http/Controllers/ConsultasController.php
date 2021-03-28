@@ -55,7 +55,7 @@ class ConsultasController extends Controller
             $con->status = 'Confirmada';
             $con->save();
             return 'Consulta Confirmada';
-            } else return 'Não é possivel confirma uma consulta já finalizada';
+            } else return 'Não é possivel confirmar uma consulta já finalizada';
         }
         return 'Consulta não encontrada';
     }

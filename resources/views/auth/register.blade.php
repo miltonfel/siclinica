@@ -6,11 +6,10 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Register') }}</div>
-
                 <div class="card-body">
                     <form method="POST" action="/api/pacientes">
                         @csrf
-
+                        {{$name ?? ''}}
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }} Completo</label>
 
@@ -201,9 +200,9 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
                                 </button>
-                                <a href="\googlelogin" class="btn btn-secondary">
+                                <!--<a href="\googlelogin" class="btn btn-secondary">
                                     <img src='http://s2.glbimg.com/z_gIOSUdsxyNGClgVLYVBHBziyw=/0x0:400x400/400x400/s.glbimg.com/po/tt2/f/original/2016/05/20/new-google-favicon-logo.png' width="20px" height="20px"> Registrar com Google
-                                </a>
+                                </a>-->
                             </div>
                         </div>
                     </form>

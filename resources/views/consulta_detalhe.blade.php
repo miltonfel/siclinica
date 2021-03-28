@@ -122,8 +122,11 @@
           </div>
 
           <p>
-            <a href class="btn btn-success" onclick='finalizarConsulta({{$id}})'>Finalizar</a>
-            <button type="cancel" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+            <a href class="btn btn-success" onclick='finalizarConsulta({{$id}})'>FinalizarConsulta</a>
+            <a href class="btn btn-primary" onclick='finalizarConsulta({{$id}})'>Buscar receita</a>
+            <a href class="btn btn-secondary" onclick='finalizarConsulta({{$id}})'>Solicitar Exame</a>
+            <a href class="btn btn-info" onclick='finalizarConsulta({{$id}})'>Gerar Atestado</a>
+            <a href='\consultas' class="btn btn-danger">Sair</a>
           </p>
         </div>
       </form>
@@ -185,7 +188,7 @@
           context: this,
           data: con,
           success: function(data) {
-            console.log(data);
+            alert ('Consulta finalizada');
             window.location.href = "/consultas";
             //document.location.reload(true);
           },

@@ -19,14 +19,14 @@ class SocialiteController extends Controller
             Auth::login($users);
             return redirect('/consultas');
         } else { //abrir tela para cadastrar usuario
-            $user = User::create([
+           /* $user = User::create([
                 'name'          => $userSocial->getName(),
                 'email'         => $userSocial->getEmail(),
                 'image'         => $userSocial->getAvatar(),
                 'provider_id'   => $userSocial->getId(),
                 'provider'      => 'google',
-            ]);
-            return redirect()->route('/login');
+            ]);*/
+            return redirect()->route('register');
         }
     }
 }
