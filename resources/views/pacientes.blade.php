@@ -239,7 +239,7 @@
             "<td>" + pac.telefone1 + "</td>" +
             "<td>" +
             '<button class="btn btn-sm btn-primary" style="margin: 0 5px;" onclick="editar(' + pac.id + ')">Editar</button>' +
-            '<button class="btn btn-sm btn-secondary" style="margin: 0 5px;" onclick="editar(' + pac.id + ')">Prontuário</button>' +
+            '<button class="btn btn-sm btn-secondary" style="margin: 0 5px;" onclick="editar(' + pac.id + ')">Histórico</button>' +
             '<button class="btn btn-sm btn-danger" style="margin: 0 5px;" onclick="confirmaExclusao(' + pac.id + ',\'' + pac.name + '\')">Excluir</button>' +
             "</td>" +
             "</tr>";

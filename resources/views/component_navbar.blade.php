@@ -14,8 +14,12 @@
         <a class="nav-link" href="/pacientes">Pacientes</a>
       </li>
 
+      <li @if($current=="agenda" ) class="nav-item active" @else class="nav-item" @endif>
+        <a class="nav-link" href="/consultas">Agenda</a>
+      </li>
+
       <li @if($current=="consultas" ) class="nav-item active" @else class="nav-item" @endif>
-        <a class="nav-link" href="/consultas">Consultas</a>
+        <a class="nav-link" href="/consultasporpaciente">Consultas</a>
       </li>
 
       <!--<li @if($current=="receitas" ) class="nav-item active" @else class="nav-item" @endif>

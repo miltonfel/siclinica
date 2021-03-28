@@ -21,6 +21,12 @@ class ConsultasController extends Controller
         return $conss->toJson();
     }
 
+    public function consultaPorPaciente($idPaciente)
+    {
+        $conss = Consulta::with(['profissional'])->where('paciente_id', $idPaciente)->orderBy('agendamento', 'desc')->get();
+        return $conss->toJson();
+    }
+
     public function abrirConsulta($id)
     {
         $con = Consulta::with(['paciente'])->where('id', $id)->get();

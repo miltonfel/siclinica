@@ -32,6 +32,11 @@ Route::get('/consulta_detalhe/{id?}', function ($id=null) {
     else return view('nova_consulta_detalhe');
 });
 
+Route::get('/consultasporpaciente', function () {
+    if (isset(Auth::user()->id)) return view('consultasporpaciente');
+    else echo "Você precisar estar logado como paciente para acessar essa página";
+});
+
 Route::get('/especialidades', function () {
     return view('especialidades');
 });
