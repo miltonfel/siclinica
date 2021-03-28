@@ -107,7 +107,7 @@
     </div>
 
     <div class="card-footer" style="background:white">
-        <div class="text-muted">TCC Desenvolvedor Web Full Stack - PUC Minas | Aluno: Milton Felipe Pyramo Ferreira</div>
+        <div class="text-muted"><a href= "https://www.pucminas.br/"> <img src="https://www.pucminas.br/ics/PublishingImages/site%20logo.jpg" width="20" height="20"> PUC Minas </a>| Aluno: Milton Felipe Pyramo Ferreira | TCC Desenvolvedor Web Full Stack </div>
     </div>
 
 </html>
