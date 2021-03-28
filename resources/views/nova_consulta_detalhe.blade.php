@@ -256,6 +256,8 @@
         console.log(con);
         $.post('/api/cadastrarConsulta', con, function(data) {
           //console.log(data);
+          alert('Consulta agendada com sucesso');
+          window.location.href = "/consultas";
 
         });
       }

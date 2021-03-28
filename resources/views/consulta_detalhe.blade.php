@@ -185,7 +185,8 @@
           context: this,
           data: con,
           success: function(data) {
-            console.log("Consulta atualizada");
+            console.log(data);
+            window.location.href = "/consultas";
             //document.location.reload(true);
           },
           error: function(error) {

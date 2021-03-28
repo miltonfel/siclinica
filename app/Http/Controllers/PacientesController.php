@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class PacientesController extends Controller
 {
@@ -43,7 +44,8 @@ class PacientesController extends Controller
         $pac->data_nascimento = $request->input('data_nascimento');
         $pac->convenio_id = $request->input('convenio_id');
         $pac->cpf = $request->input('cpf');
-        $pac->password = 'semacesso';
+        if ($request->input('password')== null) $pac->password = 'sem acesso';
+        else $pac->password = Hash::make($request->input('password'));
         $pac->rg = $request->input('rg');
         $pac->telefone1 = $request->input('telefone1');
         $pac->telefone2 = $request->input('telefone2');
@@ -57,7 +59,7 @@ class PacientesController extends Controller
         $pac->email = $request->input('email');
         $pac->obs = $request->input('obs');
         $pac->save();
-        return json_encode($pac);
+        return redirect ('consultas');
     }
 
     /**

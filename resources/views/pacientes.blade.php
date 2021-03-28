@@ -105,7 +105,6 @@
                             <label for="cep">CEP</label>
                             <input type="number" class="form-control" id="cepPaciente" placeholder="Somente nº" name="cepPaciente" onblur=consultaCep($('#cepPaciente').val()) required>
 
-                            </select>
                         </div>
                     </div>
 
@@ -311,6 +310,7 @@
             uf: $('#ufPaciente').val(),
             email: $('#emailPaciente').val(),
             obs: $('#obsPaciente').val(),
+            password: null,
         }
         console.log(pac);
         $.post('/api/pacientes', pac, function(data) {
