@@ -5,38 +5,28 @@ namespace App\Http\Controllers;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 
 class SocialiteController extends Controller
 {
+
     public function handleProviderCallback()
     {
-        $user = Socialite::driver('google')->user();
-        $nome = $user->getName();
-        $email = $user->getEmail();
-        $foto = $user->getAvatar();
-
-        $existeCadastro = confereCadastro($email);
-        if ($existeCadastro == false){
-            return "Iniciar casdastro novo";
-        }
-        else if ($existeCadastro[0]->password == 'semacesso') return "Vincular cadastro";
-        else return "Prosseguir para login";
-        
-    }
-
-}
-
-function confereCadastro($email){
-    $user = User::with(['convenio'])->where('email', $email)->get();
-    if (isset ($user[0]->email)) return $user; //email já existe no cadastro de usuário
-    else return false; //e-mail não existe no cadastro
-    /*
-        if ($user[0]->password = 'usuario sem acesso'){
-            return 'Linkar usuario com pre cadastro';
-        }
-        else {
-            return 'Usuário já existente, prosseguir para login';
+        $userSocial = Socialite::driver('google')->user();
+        $users = User::where(['email' => $userSocial->getEmail()])->first();
+        if ($users) {
+            Auth::login($users);
+            return redirect('/consultas');
+        } else { //abrir tela para cadastrar usuario
+            $user = User::create([
+                'name'          => $userSocial->getName(),
+                'email'         => $userSocial->getEmail(),
+                'image'         => $userSocial->getAvatar(),
+                'provider_id'   => $userSocial->getId(),
+                'provider'      => 'google',
+            ]);
+            return redirect()->route('/login');
         }
     }
-    else return "Usuário não cadastrado";*/
 }

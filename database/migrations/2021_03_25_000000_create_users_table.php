@@ -36,6 +36,7 @@ class CreateUsersTable extends Migration
             $table->string('uf', 2);
             $table->string('cep', 8);
             $table->string('obs')->nullable();
+            $table->integer('tipo')->default(0);
             $table->unsignedBigInteger('convenio_id')->nullable();
             $table->foreign('convenio_id')->references('id')->on('convenios');
             $table->unsignedBigInteger('especialidade_id')->nullable();

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,9 +48,14 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
 Route::get('/googlelogin', function () {
     return Socialite::driver('google')->redirect();
 });
 
 Route::get('/auth/callback', 'App\Http\Controllers\SocialiteController@handleProviderCallback');
+
+Route::prefix('/admin')->group(function() {
+    Route::get('/login', 'App\Http\Controllers\Auth\AdminLoginController@index')->name('admin.login');
+    Route::post('/login', 'App\Http\Controllers\Auth\AdminLoginController@login')->name('admin.login.submit');
+    Route::get('/', 'App\Http\Controllers\AdminController@index')->name('admin.dashboard');
+});
