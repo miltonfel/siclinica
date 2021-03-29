@@ -9,9 +9,9 @@ class Consulta extends Model
 {
     use HasFactory;
     function paciente(){
-        return $this->belongsTo('App\Models\User')->where('convenio_id','<>', null);
+        return $this->belongsTo('App\Models\User')->where('tipo','like', 'paciente');
     }
     function profissional(){
-        return $this->belongsTo('App\Models\User')->where('especialidade_id','<>', null);
+        return $this->belongsTo('App\Models\User')->where('tipo','like', 'profissional');
     }
 }

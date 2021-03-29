@@ -15,7 +15,7 @@
         </div>
         <div class="modal-body">
           <div class="media">
-            <img src="/storage/images/no_image.png" class="align-self-center mr-3" height="150" width="150" ondblclick="teste()" id="fotoPaciente">
+            <!--<img src="/storage/images/no_image.png" class="align-self-center mr-3" height="150" width="150" ondblclick="teste()" id="fotoPaciente">-->
             <div class="media-body">
               <form class="form-horizontal">
                 <div class="form-row">
@@ -121,15 +121,48 @@
             <textarea class="form-control" id="diagnostico" rows="3"></textarea>
           </div>
 
+          <div class="form-group">
+            <label for="obs">Receita</label>
+            <textarea class="form-control" id="receita" rows="4"></textarea>
+            <a class="btn btn-primary" onclick='carregarReceituarios()'>Buscar Receita</a>
+            <a class="btn btn-warning" onclick=''>Imprimir Receita</a>
+          </div>
+          
+
           <p>
             <a href class="btn btn-success" onclick='finalizarConsulta({{$id}})'>FinalizarConsulta</a>
-            <a href class="btn btn-primary" onclick='finalizarConsulta({{$id}})'>Buscar receita</a>
+
             <a href class="btn btn-secondary" onclick='finalizarConsulta({{$id}})'>Solicitar Exame</a>
             <a href class="btn btn-info" onclick='finalizarConsulta({{$id}})'>Gerar Atestado</a>
             <a href='\consultas' class="btn btn-danger">Sair</a>
           </p>
         </div>
       </form>
+    </div>
+
+      <!-- formulário de busca de receita -->
+      <div class="modal" tabindex="-1" id="dlgbuscareceita">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <form class="form-horizontal" id="formbuscareceita" enctype="multipart/form-data">
+            <div class="modal-header">
+              <h5 class="model-title">Selecione a receita</h5>
+            </div>
+            <div class="modal-body">
+
+              <div class="list-group" id="listaBuscaReceita">
+
+                <lista>
+                  <!-- Alimentado via JQuery-->
+                </lista>
+
+                <p>
+                  <button type="cancel" class="btn btn-success" style="margin-top:15px" data-dismiss="modal">Cancelar</button>
+                </p>
+              </div>
+          </form>
+        </div>
+      </div>
     </div>
 
 
@@ -188,7 +221,7 @@
           context: this,
           data: con,
           success: function(data) {
-            alert ('Consulta finalizada');
+            alert('Consulta finalizada');
             window.location.href = "/consultas";
             //document.location.reload(true);
           },
@@ -196,6 +229,38 @@
             console.log(error);
           },
         });
+      }
+
+      function montarLinha(rec) {
+        var linha =
+          '<button type="button" class="list-group-item list-group-item-action" onclick="preencherReceita(' + rec.descricao +')">' + rec.titulo + '</button>';
+        return linha;
+      }
+
+      function carregarReceituarios() {
+        $("#listaBuscaReceita>lista").empty();
+          $.getJSON('../api/receituarios', function(data) {
+            if (data.length > 0) {
+              for (i = 0; i < data.length; i++) {
+                linha = montarLinha(data[i]);
+                $('#listaBuscaReceita>lista').append(linha)
+              }
+              $(dlgbuscareceita).modal('show');
+              var carga = "Carga Concluída";
+            } else {
+              alert('Não existem receitas pré cadastradas');
+              recarregaPagina();
+            }
+          });
+      }
+
+      function preencherReceita($texto){
+        $receita = ($('#receita').val()) + $texto;
+        $('#receita').val($receita);
+      }
+
+      function recarregaPagina() {
+        document.location.reload(true);
       }
 
 
