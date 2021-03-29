@@ -45,6 +45,10 @@ Route::get('/convenios', function () {
     return view('convenios');
 });
 
+Route::get('/receituario', function () {
+    return view('receituario');
+});
+
 Route::get('/consultas', function () {
     return view('consultas');
 });

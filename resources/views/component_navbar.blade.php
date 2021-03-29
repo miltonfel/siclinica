@@ -38,6 +38,10 @@
         <a class="nav-link" href="/especialidades">Especialidades</a>
       </li>
 
+      <li @if($current=="receituario" ) class="nav-item active" @else class="nav-item" @endif>
+        <a class="nav-link" href="/receituario">Receituário</a>
+      </li>
+
     </ul>
   </div>
 

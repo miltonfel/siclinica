@@ -158,6 +158,7 @@
         </div>
     </div>
 </div>
+
 <div class="modal" tabindex="-1" role="dialog" id="dlgDeleteConfirm">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

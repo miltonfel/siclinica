@@ -4,21 +4,21 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateReceituarios extends Migration
+class CreateReceitas extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    //receituario é um banco para auxiliar na confecção das receitas, ficando pré cadastradas.
     public function up()
     {
-        Schema::create('receituarios', function (Blueprint $table) {
+        Schema::create('receitas', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('titulo');
             $table->text('descricao');
+            $table->unsignedBigInteger('consulta_id');
+            $table->foreign('consulta_id')->references('id')->on('consultas');
         });
     }
 
@@ -29,6 +29,6 @@ class CreateReceituarios extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('receituarios');
+        Schema::dropIfExists('receitas');
     }
 }
