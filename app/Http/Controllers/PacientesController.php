@@ -15,7 +15,7 @@ class PacientesController extends Controller
      */
     public function index()
     {
-        $pacs = User::with(['convenio'])->where('convenio_id','<>', null)->get();
+        $pacs = User::with(['convenio'])->where('tipo','=', 'paciente')->get();
         return $pacs->toJson();
     }
 

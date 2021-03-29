@@ -9,7 +9,7 @@ class ProfissionaisController extends Controller
 {
     public function index()
     {
-        $profs = User::with(['especialidade'])->where('especialidade_id','<>', null)->get();
+        $profs = User::with(['especialidade'])->where('tipo','=', 'profissional')->get();
         return $profs->toJson();
     }
 
@@ -34,6 +34,7 @@ class ProfissionaisController extends Controller
         $pro->uf = $request->input('uf');
         $pro->email = $request->input('email');
         $pro->obs = $request->input('obs');
+        $pro->tipo = 'profissional';
         $pro->save();
         return json_encode($pro);
     }

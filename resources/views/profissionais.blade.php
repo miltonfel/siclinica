@@ -41,7 +41,7 @@
                 <div class="modal-body">
 
                     <div class="media">
-                        <img src="/storage/images/no_image.png" class="align-self-center mr-3" height="150" width="150" ondblclick="teste()" id="fotoProfissional">
+                        <!--<img src="/storage/images/no_image.png" class="align-self-center mr-3" height="150" width="150" ondblclick="teste()" id="fotoProfissional">-->
                         <div class="media-body">
                             <form class="form-horizontal">
                                 <div class="form-row">

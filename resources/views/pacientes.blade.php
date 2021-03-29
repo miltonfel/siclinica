@@ -42,7 +42,7 @@
                 <div class="modal-body">
 
                     <div class="media">
-                        <img src="/storage/images/no_image.png" class="align-self-center mr-3" height="150" width="150" ondblclick="teste()" id="fotoPaciente">
+                        <!--<img src="/storage/images/no_image.png" class="align-self-center mr-3" height="150" width="150" ondblclick="teste()" id="fotoPaciente">-->
                         <div class="media-body">
                             <form class="form-horizontal">
                                 <div class="form-row">
@@ -144,13 +144,12 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="obs">Obs.</label>
+                        <label for="obs">Histórico familiar, cirurgias realizadas, doenças, medicamentos, etc</label>
                         <textarea class="form-control" id="obsPaciente" rows="3"></textarea>
                     </div>
 
                     <p>
                         <button type="submit" class="btn btn-primary">Salvar</button>
-                        <button type="cancel" class="btn btn-secondary" data-dismiss="modal">Prontuário</button>
                         <button type="cancel" class="btn btn-success" data-dismiss="modal">Fechar</button>
                     </p>
                 </div>
@@ -239,7 +238,7 @@
             "<td>" + pac.telefone1 + "</td>" +
             "<td>" +
             '<button class="btn btn-sm btn-primary" style="margin: 0 5px;" onclick="editar(' + pac.id + ')">Editar</button>' +
-            '<button class="btn btn-sm btn-secondary" style="margin: 0 5px;" onclick="editar(' + pac.id + ')">Histórico</button>' +
+            '<!--<button class="btn btn-sm btn-secondary" style="margin: 0 5px;" onclick="editar(' + pac.id + ')">Histórico</button>-->' +
             '<button class="btn btn-sm btn-danger" style="margin: 0 5px;" onclick="confirmaExclusao(' + pac.id + ',\'' + pac.name + '\')">Excluir</button>' +
             "</td>" +
             "</tr>";
@@ -315,7 +314,7 @@
         console.log(pac);
         $.post('/api/pacientes', pac, function(data) {
             console.log(data);
-            paciente = JSON.parse(data);
+            //paciente = JSON.parse(data);
             //linha = montarLinha(paciente);
             //$('#tabelaPacientes>tBody').append(linha);
             document.location.reload(true);
@@ -379,7 +378,6 @@
         $('#mensagemConfirmacao').text("Confirma a exclusão do(a) paciente " + name + "?");
         $('#dlgDeleteConfirm').modal('show')
     }
-
 
     function remover(id) {
         console.log("EXCLUINDO" + id);

@@ -21,6 +21,14 @@ class DatabaseSeeder extends Seeder
         'password' => Hash::make('123mudar'),
     ]);
 
+    DB::table('convenios')->insert([
+        'descricao' => 'Particular',
+    ]);
+
+    DB::table('especialidades')->insert([
+        'descricao' => 'Clínica Geral',
+    ]);
+
         // \App\Models\User::factory(10)->create();
     }
 }

@@ -17,7 +17,7 @@ class CreateConvenios extends Migration
             $table->id();
             $table->timestamps();
             $table->string('descricao');
-            $table->boolean('ativo');
+            $table->boolean('ativo')->default(1);
         });
     }
 
