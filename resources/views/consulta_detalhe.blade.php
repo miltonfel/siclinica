@@ -123,7 +123,7 @@
 
           <div class="form-group">
             <label for="obs">Receita</label>
-            <textarea class="form-control" id="receita" rows="4"></textarea>
+            <textarea class="form-control" placeholder="Busque uma receita pre cadastrada ou digite" id="receita" rows="4"></textarea>
             <a class="btn btn-primary" onclick='carregarReceituarios()'>Buscar Receita</a>
             <a class="btn btn-warning" onclick=''>Imprimir Receita</a>
           </div>
@@ -204,6 +204,7 @@
           $('#emailPaciente').val(data[0].paciente.email);
           $('#motivo').val(data[0].motivo);
           $('#diagnostico').val(data[0].diagnostico);
+          $('#receita').val(data[0].receita);
         });
       }
 
@@ -213,6 +214,7 @@
           id: $id,
           motivo: $('#motivo').val(),
           diagnostico: $('#diagnostico').val(),
+          receita: $('#receita').val(),
         };
         console.log(con);
         $.ajax({
@@ -233,7 +235,7 @@
 
       function montarLinha(rec) {
         var linha =
-          '<button type="button" class="list-group-item list-group-item-action" onclick="preencherReceita(' + rec.descricao +')">' + rec.titulo + '</button>';
+          '<button type="button" class="list-group-item list-group-item-action" onclick="preencherReceita(' + rec.id + ' )">' + rec.titulo + '</button>';
         return linha;
       }
 
@@ -245,18 +247,20 @@
                 linha = montarLinha(data[i]);
                 $('#listaBuscaReceita>lista').append(linha)
               }
-              $(dlgbuscareceita).modal('show');
+              $('#dlgbuscareceita').modal('show');
               var carga = "Carga Concluída";
             } else {
               alert('Não existem receitas pré cadastradas');
-              recarregaPagina();
             }
           });
       }
 
-      function preencherReceita($texto){
-        $receita = ($('#receita').val()) + $texto;
-        $('#receita').val($receita);
+      function preencherReceita(id,){
+        //console.log(id);
+        $.getJSON('../api/receituarios/'+id, function(data) {
+          $('#receita').val(data.descricao);
+        });
+        $('#dlgbuscareceita').modal('hide');
       }
 
       function recarregaPagina() {

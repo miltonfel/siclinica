@@ -87,6 +87,7 @@ class ConsultasController extends Controller
             $con->status = 'Finalizada';
             $con->motivo = $request->input('motivo');
             $con->diagnostico = $request->input('diagnostico');
+            $con->receita = $request->input('receita');
             $con->save();
             return response('Consulta atualizada', 200);
         }
