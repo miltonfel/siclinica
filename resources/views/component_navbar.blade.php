@@ -42,6 +42,10 @@
         <a class="nav-link" href="/receituario">Receituário</a>
       </li>
 
+      <li @if($current=="exames" ) class="nav-item active" @else class="nav-item" @endif>
+        <a class="nav-link" href="/exames">Exames</a>
+      </li>
+
     </ul>
   </div>
 

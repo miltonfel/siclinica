@@ -49,6 +49,10 @@ Route::get('/receituario', function () {
     return view('receituario');
 });
 
+Route::get('/exames', function () {
+    return view('exames');
+});
+
 Route::get('/consultas', function () {
     return view('consultas');
 });

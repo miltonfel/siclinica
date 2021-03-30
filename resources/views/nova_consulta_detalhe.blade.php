@@ -123,10 +123,10 @@
             <textarea class="form-control" id="motivo" rows="3"></textarea>
           </div>
 
-          <div class="form-group">
+         <!-- <div class="form-group">
             <label for="obs">Quadro Clínico</label>
             <textarea class="form-control" id="quadroclinico" rows="3"></textarea>
-          </div>
+          </div>-->
 
           <p>
             <a href class="btn btn-primary" onclick='criarConsulta()'>Cadastrar</a>

@@ -127,12 +127,17 @@
             <a class="btn btn-primary" onclick='carregarReceituarios()'>Buscar Receita</a>
             <a class="btn btn-warning" onclick=''>Imprimir Receita</a>
           </div>
-          
+
+          <div class="form-group">
+            <label for="obs">Pedido de exame</label>
+            <textarea class="form-control" placeholder="Busque um exame pre cadastrado ou digite" id="exame" rows="4"></textarea>
+            <a class="btn btn-primary" onclick='carregarExames()'>Buscar Exame</a>
+            <a class="btn btn-warning" onclick=''>Imprimir Pedido</a>
+          </div>
+
 
           <p>
             <a href class="btn btn-success" onclick='finalizarConsulta({{$id}})'>FinalizarConsulta</a>
-
-            <a href class="btn btn-secondary" onclick='finalizarConsulta({{$id}})'>Solicitar Exame</a>
             <a href class="btn btn-info" onclick='finalizarConsulta({{$id}})'>Gerar Atestado</a>
             <a href='\consultas' class="btn btn-danger">Sair</a>
           </p>
@@ -140,8 +145,8 @@
       </form>
     </div>
 
-      <!-- formulário de busca de receita -->
-      <div class="modal" tabindex="-1" id="dlgbuscareceita">
+    <!-- formulário de busca de receita -->
+    <div class="modal" tabindex="-1" id="dlgbuscareceita">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <form class="form-horizontal" id="formbuscareceita" enctype="multipart/form-data">
@@ -164,6 +169,33 @@
         </div>
       </div>
     </div>
+  </div>
+
+    <!-- formulário de busca de exame -->
+    <div class="modal" tabindex="-1" id="dlgbuscaexames">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <form class="form-horizontal" id="formbuscaexames" enctype="multipart/form-data">
+            <div class="modal-header">
+              <h5 class="model-title">Selecione o pedido de exame</h5>
+            </div>
+            <div class="modal-body">
+
+              <div class="list-group" id="listaBuscaExames">
+
+                <lista>
+                  <!-- Alimentado via JQuery-->
+                </lista>
+
+                <p>
+                  <button type="cancel" class="btn btn-success" style="margin-top:15px" data-dismiss="modal">Cancelar</button>
+                </p>
+              </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
     @endsection
@@ -205,6 +237,7 @@
           $('#motivo').val(data[0].motivo);
           $('#diagnostico').val(data[0].diagnostico);
           $('#receita').val(data[0].receita);
+          $('#exame').val(data[0].exame);
         });
       }
 
@@ -215,6 +248,7 @@
           motivo: $('#motivo').val(),
           diagnostico: $('#diagnostico').val(),
           receita: $('#receita').val(),
+          exame: $('#exame').val(),
         };
         console.log(con);
         $.ajax({
@@ -241,26 +275,58 @@
 
       function carregarReceituarios() {
         $("#listaBuscaReceita>lista").empty();
-          $.getJSON('../api/receituarios', function(data) {
-            if (data.length > 0) {
-              for (i = 0; i < data.length; i++) {
-                linha = montarLinha(data[i]);
-                $('#listaBuscaReceita>lista').append(linha)
-              }
-              $('#dlgbuscareceita').modal('show');
-              var carga = "Carga Concluída";
-            } else {
-              alert('Não existem receitas pré cadastradas');
+        $.getJSON('../api/receituarios', function(data) {
+          if (data.length > 0) {
+            for (i = 0; i < data.length; i++) {
+              linha = montarLinha(data[i]);
+              $('#listaBuscaReceita>lista').append(linha)
             }
-          });
+            $('#dlgbuscareceita').modal('show');
+            var carga = "Carga Concluída";
+          } else {
+            alert('Não existem receitas pré cadastradas');
+          }
+        });
       }
 
-      function preencherReceita(id,){
+      function preencherReceita(id, ) {
         //console.log(id);
-        $.getJSON('../api/receituarios/'+id, function(data) {
+        $.getJSON('../api/receituarios/' + id, function(data) {
           $('#receita').val(data.descricao);
         });
         $('#dlgbuscareceita').modal('hide');
+      }
+
+
+      function montarLinhaExame(exa) {
+        var linha =
+          '<button type="button" class="list-group-item list-group-item-action" onclick="preencherExame(' + exa.id + ' )">' + exa.titulo + '</button>';
+        return linha;
+      }
+
+      function carregarExames() {
+        console.log("Busca de exames");
+        $("#listaBuscaExames>lista").empty();
+        $.getJSON('../api/exames', function(data) {
+          if (data.length > 0) {
+            for (i = 0; i < data.length; i++) {
+              linha = montarLinhaExame(data[i]);
+              $('#listaBuscaExames>lista').append(linha)
+            }
+            $('#dlgbuscaexames').modal('show');
+            var carga = "Carga Concluída";
+          } else {
+            alert('Não existem pedidos de exames pré cadastrados');
+          }
+        });
+      }
+
+      function preencherExame(id, ) {
+        //console.log(id);
+        $.getJSON('../api/exames/' + id, function(data) {
+          $('#exame').val(data.descricao);
+        });
+        $('#dlgbuscaexames').modal('hide');
       }
 
       function recarregaPagina() {
