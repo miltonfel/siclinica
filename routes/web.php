@@ -32,6 +32,10 @@ Route::get('/consulta_detalhe/{id?}', function ($id=null) {
     else return view('nova_consulta_detalhe');
 });
 
+Route::get('/historico_paciente/{id}', function ($id) {
+    return view('historicoPaciente', ['id' => $id]);
+});
+
 Route::get('/consultasporpaciente', function () {
     if (isset(Auth::user()->id)) return view('consultasporpaciente');
     else echo "Você precisar estar logado como paciente para acessar essa página";
@@ -55,6 +59,14 @@ Route::get('/exames', function () {
 
 Route::get('/consultas', function () {
     return view('consultas');
+});
+
+Route::get('/tiposconsultas', function () {
+    return view('tiposconsultas');
+});
+
+Route::get('/estabelecimento', function () {
+    return view('estabelecimento');
 });
 
 Auth::routes();

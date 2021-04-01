@@ -1,4 +1,4 @@
-@extends('layouts.app', ["current" => "consultas"])
+@extends('layouts.app', ["current" => "agenda"])
 
 @section('body')
 
@@ -17,7 +17,7 @@
         <div class="modal-body"> Dados Paciente
 
           <div class="media">
-            <img src="/storage/images/no_image.png" class="align-self-center mr-3" height="150" width="150" ondblclick="teste()" id="fotoPaciente">
+            <!--<img src="/storage/images/no_image.png" class="align-self-center mr-3" height="150" width="150" ondblclick="teste()" id="fotoPaciente">-->
             <div class="media-body">
               <form class="form-horizontal">
                 <div class="form-row">
@@ -37,7 +37,7 @@
                   </div>
                 </div>
                 <div class="form-row">
-                  <div class="form-group col-md-4">
+                  <div class="form-group col-md-2">
                     <label for="sexoPaciente">Sexo</label>
                     <input type="text" id="sexoPaciente" class="form-control" readonly>
                   </div>
@@ -52,6 +52,12 @@
                   <div class="form-group col-md-2">
                     <label for="horarioConsulta">Horário Consulta</label>
                     <input type="time" id="horarioConsulta" class="form-control">
+                  </div>
+                  <div class="form-group col-md-2">
+                    <label for="name">Tipo</label>
+                    <select id="tipoConsulta" class="form-control">
+
+                    </select>
                   </div>
 
                 </div>
@@ -242,6 +248,15 @@
         });
       }
 
+      function carregarTipos() {
+        $.getJSON('/api/tipos', function(data) {
+          for (i = 0; i < data.length; i++) {
+            opcao = '<option value="' + data[i].id + '">' + data[i].descricao + '</option>';
+            $('#tipoConsulta').append(opcao);
+          }
+        });
+      }
+
       function criarConsulta() {
         datahoraconsulta = $('#dataConsulta').val() + ' '+ $('#horarioConsulta').val() + ':00'
         console.log(datahoraconsulta);
@@ -251,6 +266,7 @@
           convenio_id: $('#convenioPaciente').val(),
           paciente_id: $('#id').val(),
           profissional_id: $('#profissionais').val(),
+          tipo_id: $('#tipoConsulta').val(),
           motivo: $('#motivo').val(),
         }
         console.log(con);
@@ -272,6 +288,7 @@
       $(function() {
         //$('#dlgLoading').modal("show");
         carregarProfissionais(loading);
+        carregarTipos(loading);
       })
     </script>
 

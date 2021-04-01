@@ -73,6 +73,7 @@ class ConsultasController extends Controller
         $con->convenio_id = '1'; //acertar a busca desse campo
         $con->profissional_id = $request->input('profissional_id');
         $con->paciente_id = $request->input('paciente_id');
+        $con->tipo_id = $request->input('tipo_id');
         $con->motivo = $request->input('motivo');
         $con->status = 'Agendada';
         $con->save();

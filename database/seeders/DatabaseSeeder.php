@@ -29,6 +29,18 @@ class DatabaseSeeder extends Seeder
         'descricao' => 'Clínica Geral',
     ]);
 
+    DB::table('tipos')->insert([
+        'descricao' => 'Primeira',
+    ]);
+
+    DB::table('tipos')->insert([
+        'descricao' => 'Retorno',
+    ]);
+
+    DB::table('tipos')->insert([
+        'descricao' => 'Rotina',
+    ]);
+
         // \App\Models\User::factory(10)->create();
     }
 }

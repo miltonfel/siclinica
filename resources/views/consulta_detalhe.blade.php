@@ -1,4 +1,4 @@
-@extends('layouts.app', ["current" => "consultas"])
+@extends('layouts.app', ["current" => "agenda"])
 
 @section('body')
 
@@ -30,7 +30,7 @@
                   </div>
                 </div>
                 <div class="form-row">
-                  <div class="form-group col-md-4">
+                  <div class="form-group col-md-2">
                     <label for="sexoPaciente">Sexo</label>
                     <input type="text" id="sexoPaciente" class="form-control" readonly>
                   </div>
@@ -45,6 +45,10 @@
                   <div class="form-group col-md-2">
                     <label for="horarioConsulta">Horário Consulta</label>
                     <input type="time" id="horarioConsulta" class="form-control" readonly>
+                  </div>
+                  <div class="form-group col-md-2">
+                    <label for="horarioConsulta">Tipo</label>
+                    <input type="text" id="tipoConsulta" class="form-control" readonly>
                   </div>
 
                 </div>
@@ -144,6 +148,7 @@
         </div>
       </form>
     </div>
+    
 
     <!-- formulário de busca de receita -->
     <div class="modal" tabindex="-1" id="dlgbuscareceita">
@@ -220,6 +225,7 @@
           $('#profissionais').val(data[0].profissional_id);
           $('#dataConsulta').val((data[0].agendamento).slice(0, 10));
           $('#horarioConsulta').val((data[0].agendamento).slice(11, 16));
+          $('#tipoConsulta').val(data[0].tipo_id);
           $('#nomePaciente').val(data[0].paciente.name);
           $('#sexoPaciente').val(data[0].paciente.sexo);
           $('#dataNascimentoPaciente').val(data[0].paciente.data_nascimento);

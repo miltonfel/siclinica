@@ -46,6 +46,14 @@
         <a class="nav-link" href="/exames">Exames</a>
       </li>
 
+      <li @if($current=="tipos" ) class="nav-item active" @else class="nav-item" @endif>
+        <a class="nav-link" href="/tiposconsultas">Tipos Consulta</a>
+      </li>
+
+      <li @if($current=="estabelecimento" ) class="nav-item active" @else class="nav-item" @endif>
+        <a class="nav-link" href="/estabelecimento">Estabelecimento</a>
+      </li>
+
     </ul>
   </div>
 

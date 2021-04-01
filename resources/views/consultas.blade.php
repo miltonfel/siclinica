@@ -118,6 +118,7 @@
             '<button class="btn btn-sm btn-success" style="margin: 0 5px;" onclick="confirmaConsulta(' + con.id + ')">Confirmar</button>' +
             '<button class="btn btn-sm btn-danger" style="margin: 0 5px;" onclick="confirmaCancelamento(' + con.id + ',\'' + con.paciente.name + '\')">Cancelar</button>' +
             '<a class="btn btn-sm btn-primary" style="margin: 0 5px;" href="consulta_detalhe/' + con.id + '">Acessar</a>' +
+            '<a class="btn btn-sm btn-secondary" style="margin: 0 5px;" href="../historico_paciente/' + con.paciente.id + '">Histórico</a>' +
             "</td>" +
             "</tr>";
         return linha;

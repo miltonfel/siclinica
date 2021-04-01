@@ -28,6 +28,8 @@ class CreateConsultas extends Migration
             $table->foreign('profissional_id')->references('id')->on('users');
             $table->unsignedBigInteger('paciente_id');
             $table->foreign('paciente_id')->references('id')->on('users');
+            $table->unsignedBigInteger('tipo_id');
+            $table->foreign('tipo_id')->references('id')->on('tipos');
 
         });
     }
