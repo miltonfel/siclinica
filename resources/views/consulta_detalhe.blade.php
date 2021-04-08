@@ -222,14 +222,14 @@
       function abrirConsulta($id) {
         $.getJSON('../api/abrirConsulta/' + $id, function(data) {
           $('#id').val(data[0].id);
-          $('#profissionais').val(data[0].profissional_id);
+          $('#profissionais').val(data[0].profissional.name);
           $('#dataConsulta').val((data[0].agendamento).slice(0, 10));
           $('#horarioConsulta').val((data[0].agendamento).slice(11, 16));
           $('#tipoConsulta').val(data[0].tipo_id);
           $('#nomePaciente').val(data[0].paciente.name);
           $('#sexoPaciente').val(data[0].paciente.sexo);
           $('#dataNascimentoPaciente').val(data[0].paciente.data_nascimento);
-          $('#convenioPaciente').val(data[0].paciente.convenio_id);
+          $('#convenioPaciente').val(data[0].convenio.descricao);
           $('#telefone1Paciente').val(data[0].paciente.telefone1);
           $('#telefone2Paciente').val(data[0].paciente.telefone2);
           $('#cepPaciente').val(data[0].paciente.cep);

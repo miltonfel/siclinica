@@ -29,7 +29,7 @@ class ConsultasController extends Controller
 
     public function abrirConsulta($id)
     {
-        $con = Consulta::with(['paciente'])->where('id', $id)->get();
+        $con = Consulta::with(['paciente', 'profissional','convenio'])->where('id', $id)->get();
         return $con->toJson();
     }
 
@@ -70,7 +70,7 @@ class ConsultasController extends Controller
     {
         $con = new Consulta();
         $con->agendamento = $request->input('agendamento');
-        $con->convenio_id = '1'; //acertar a busca desse campo
+        $con->convenio_id = $request->input('convenio_id');
         $con->profissional_id = $request->input('profissional_id');
         $con->paciente_id = $request->input('paciente_id');
         $con->tipo_id = $request->input('tipo_id');

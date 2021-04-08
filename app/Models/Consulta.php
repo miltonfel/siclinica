@@ -14,4 +14,7 @@ class Consulta extends Model
     function profissional(){
         return $this->belongsTo('App\Models\User')->where('tipo','like', 'profissional');
     }
+    function convenio(){
+        return $this->belongsTo('App\Models\Convenio');
+    }
 }

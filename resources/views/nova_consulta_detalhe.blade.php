@@ -119,6 +119,7 @@
               <input type="email" class="form-control" id="emailPaciente" readonly>
             </div>
             <div class="form-group col-md-4">
+            <input type="hidden" id="idConvenio" class="form-control">  
               <label for="convenio">Convênio</label>
               <input type="text" id="convenioPaciente" class="form-control" readonly>
             </div>
@@ -192,6 +193,7 @@
           $('#nomePaciente').val(data[0].name);
           $('#sexoPaciente').val(data[0].sexo);
           $('#dataNascimentoPaciente').val(data[0].data_nascimento);
+          $('#idConvenio').val(data[0].convenio_id);
           $('#convenioPaciente').val(data[0].convenio.descricao);
           $('#cpfPaciente').val(data[0].cpf);
           $('#rgPaciente').val(data[0].rg);
@@ -263,7 +265,7 @@
         if (datahoraconsulta != ' :00'){
         con = {
           agendamento: datahoraconsulta,
-          convenio_id: $('#convenioPaciente').val(),
+          convenio_id: $('#idConvenio').val(),
           paciente_id: $('#id').val(),
           profissional_id: $('#profissionais').val(),
           tipo_id: $('#tipoConsulta').val(),
