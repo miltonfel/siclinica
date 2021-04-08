@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class ProfissionaisController extends Controller
 {
     public function index()
     {
-        $profs = User::with(['especialidade'])->where('tipo','=', 'profissional')->get();
+        $profs = User::with(['especialidade'])->where('tipo', '=', 'profissional')->get();
         return $profs->toJson();
     }
 
@@ -79,10 +80,25 @@ class ProfissionaisController extends Controller
     public function destroy($id)
     {
         $pro = User::find($id);
-         if (isset($pro)){
-           $pro->delete();
-           return response('OK', 200);
-       }
-       return response ('Profissional não encontrado', 404);
+        if (isset($pro)) {
+            $pro->delete();
+            return response('OK', 200);
+        }
+        return response('Profissional não encontrado', 404);
+    }
+
+    public function listarUsuarios()
+    {
+        $users = DB::table('users')->orderBy('name')->get();
+        return $users->toJson();
+    }
+
+    public function alterarTipoUsuario($id, $tipo)
+    {
+        $user = User::find($id);
+        if (isset($user)) {
+            $user->tipo = $tipo;
+            $user->save();
+        } else return ('Cadastro não encontrado');
     }
 }

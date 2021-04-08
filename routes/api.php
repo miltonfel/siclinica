@@ -34,3 +34,5 @@ Route::post('/cancelarConsulta/{id}', 'App\Http\Controllers\ConsultasController@
 Route::post('/confirmarConsulta/{id}', 'App\Http\Controllers\ConsultasController@confirmarConsulta');
 Route::get('/abrirConsulta/{id}', 'App\Http\Controllers\ConsultasController@abrirConsulta');
 Route::get('/verificaLogin/{nome}/{email}/{foto}', 'App\Http\Controllers\SocialiteController@handleProviderCallback');
+Route::get('/listarusuarios', 'App\Http\Controllers\ProfissionaisController@listarUsuarios');
+Route::post('/alterartipousuarios/{id}/{tipo}', 'App\Http\Controllers\ProfissionaisController@alterarTipoUsuario');

@@ -69,6 +69,10 @@ Route::get('/estabelecimento', function () {
     return view('estabelecimento');
 });
 
+Route::get('/tiposusuarios', function () {
+    return view('tiposusuarios');
+});
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
