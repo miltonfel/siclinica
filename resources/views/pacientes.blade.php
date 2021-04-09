@@ -42,12 +42,12 @@
                 <div class="modal-body">
 
                     <div class="media">
-                        <img src="/storage/images/no_image.png" class="align-self-center mr-3" height="150" width="150" ondblclick="teste()" id="fotoPaciente">
+                        <!--<img src="/storage/images/no_image.png" class="align-self-center mr-3" height="150" width="150" ondblclick="teste()" id="fotoPaciente">-->
                         <div class="media-body">
                             <form class="form-horizontal">
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
-                                        <label for="nome">Nome</label>
+                                        <label for="name">Nome</label>
                                         <input type="text" class="form-control" id="nomePaciente">
                                     </div>
 
@@ -105,7 +105,6 @@
                             <label for="cep">CEP</label>
                             <input type="number" class="form-control" id="cepPaciente" placeholder="Somente nº" name="cepPaciente" onblur=consultaCep($('#cepPaciente').val()) required>
 
-                            </select>
                         </div>
                     </div>
 
@@ -145,13 +144,12 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="obs">Obs.</label>
+                        <label for="obs">Histórico familiar, cirurgias realizadas, doenças, medicamentos, etc</label>
                         <textarea class="form-control" id="obsPaciente" rows="3"></textarea>
                     </div>
 
                     <p>
                         <button type="submit" class="btn btn-primary">Salvar</button>
-                        <button type="cancel" class="btn btn-secondary" data-dismiss="modal">Prontuário</button>
                         <button type="cancel" class="btn btn-success" data-dismiss="modal">Fechar</button>
                     </p>
                 </div>
@@ -235,13 +233,13 @@
     function montarLinha(pac) {
         var linha = "<tr>" +
             "<td>" + pac.id + "</td>" +
-            "<td>" + pac.nome + "</td>" +
+            "<td>" + pac.name + "</td>" +
             "<td>" + pac.convenio.descricao + "</td>" +
             "<td>" + pac.telefone1 + "</td>" +
             "<td>" +
             '<button class="btn btn-sm btn-primary" style="margin: 0 5px;" onclick="editar(' + pac.id + ')">Editar</button>' +
-            '<button class="btn btn-sm btn-secondary" style="margin: 0 5px;" onclick="editar(' + pac.id + ')">Prontuário</button>' +
-            '<button class="btn btn-sm btn-danger" style="margin: 0 5px;" onclick="confirmaExclusao(' + pac.id + ',\'' + pac.nome + '\')">Excluir</button>' +
+            '<!--<button class="btn btn-sm btn-secondary" style="margin: 0 5px;" onclick="editar(' + pac.id + ')">Histórico</button>-->' +
+            '<button class="btn btn-sm btn-danger" style="margin: 0 5px;" onclick="confirmaExclusao(' + pac.id + ',\'' + pac.name + '\')">Excluir</button>' +
             "</td>" +
             "</tr>";
         return linha;
@@ -268,32 +266,33 @@
     }
 
     function editar(id) {
+        console.log("EDIÇÂO id: "+id);
         $.getJSON('api/pacientes/' + id, function(data) {
             $('#id').val(id);
-            $('#nomePaciente').val(data.nome);
-            $('#sexoPaciente').val(data.sexo);
-            $('#dataNascimentoPaciente').val(data.data_nascimento);
-            $('#convenioPaciente').val(data.convenio_id);
-            $('#cpfPaciente').val(data.cpf);
-            $('#rgPaciente').val(data.rg);
-            $('#telefone1Paciente').val(data.telefone1);
-            $('#telefone2Paciente').val(data.telefone2);
-            $('#cepPaciente').val(data.cep);
-            $('#logradouroPaciente').val(data.logradouro);
-            $('#numeroEnderecoPaciente').val(data.numero);
-            $('#complementoEnderecoPaciente').val(data.complemento);
-            $('#bairroPaciente').val(data.bairro);
-            $('#cidadePaciente').val(data.cidade);
-            $('#ufPaciente').val(data.uf);
-            $('#emailPaciente').val(data.email);
-            $('#obsPaciente').val(data.obs);
+            $('#nomePaciente').val(data[0].name);
+            $('#sexoPaciente').val(data[0].sexo);
+            $('#dataNascimentoPaciente').val(data[0].data_nascimento);
+            $('#convenioPaciente').val(data[0].convenio_id);
+            $('#cpfPaciente').val(data[0].cpf);
+            $('#rgPaciente').val(data[0].rg);
+            $('#telefone1Paciente').val(data[0].telefone1);
+            $('#telefone2Paciente').val(data[0].telefone2);
+            $('#cepPaciente').val(data[0].cep);
+            $('#logradouroPaciente').val(data[0].logradouro);
+            $('#numeroEnderecoPaciente').val(data[0].numero);
+            $('#complementoEnderecoPaciente').val(data[0].complemento);
+            $('#bairroPaciente').val(data[0].bairro);
+            $('#cidadePaciente').val(data[0].cidade);
+            $('#ufPaciente').val(data[0].uf);
+            $('#emailPaciente').val(data[0].email);
+            $('#obsPaciente').val(data[0].obs);
             $('#dlgPacientes').modal("show");
         });
     }
 
     function criarPaciente() {
         pac = {
-            nome: $('#nomePaciente').val(),
+            name: $('#nomePaciente').val(),
             sexo: $('#sexoPaciente').val(),
             data_nascimento: $('#dataNascimentoPaciente').val(),
             convenio_id: $('#convenioPaciente').val(),
@@ -310,11 +309,12 @@
             uf: $('#ufPaciente').val(),
             email: $('#emailPaciente').val(),
             obs: $('#obsPaciente').val(),
+            password: null,
         }
         console.log(pac);
         $.post('/api/pacientes', pac, function(data) {
             console.log(data);
-            paciente = JSON.parse(data);
+            //paciente = JSON.parse(data);
             //linha = montarLinha(paciente);
             //$('#tabelaPacientes>tBody').append(linha);
             document.location.reload(true);
@@ -324,7 +324,7 @@
     function salvarPaciente() {
         pac = {
             id: $("#id").val(),
-            nome: $('#nomePaciente').val(),
+            name: $('#nomePaciente').val(),
             sexo: $('#sexoPaciente').val(),
             data_nascimento: $('#dataNascimentoPaciente').val(),
             convenio_id: $('#convenioPaciente').val(),
@@ -361,21 +361,23 @@
 
     $("#formPacientes").submit(function(event) {
         event.preventDefault();
-        if ($("#id").val() != '')
+        if ($("#id").val() != ''){
             salvarPaciente();
-        else
+        }
+        else{
             criarPaciente();
+        }
+        
         $('#formPacientes').modal('hide');
     });
 
 
-    function confirmaExclusao(id, nome) {
-        console.log("Confirmação exclusão do paciente " + nome);
+    function confirmaExclusao(id, name) {
+        console.log("Confirmação exclusão do paciente " + name);
         $('#idPaciente').val(id);
-        $('#mensagemConfirmacao').text("Confirma a exclusão do(a) paciente " + nome + "?");
+        $('#mensagemConfirmacao').text("Confirma a exclusão do(a) paciente " + name + "?");
         $('#dlgDeleteConfirm').modal('show')
     }
-
 
     function remover(id) {
         console.log("EXCLUINDO" + id);

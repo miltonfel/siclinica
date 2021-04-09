@@ -18,13 +18,18 @@ class CreateConsultas extends Migration
             $table->timestamps();
             $table->dateTime('agendamento');
             $table->string('status');
-            $table->string('diagnostico');
+            $table->text('diagnostico')->nullable();
+            $table->text('motivo')->nullable();
+            $table->text('receita')->nullable();
+            $table->text('exame')->nullable();
             $table->unsignedBigInteger('convenio_id');
             $table->foreign('convenio_id')->references('id')->on('convenios');
             $table->unsignedBigInteger('profissional_id');
-            $table->foreign('profissional_id')->references('id')->on('profissionais');
+            $table->foreign('profissional_id')->references('id')->on('users');
             $table->unsignedBigInteger('paciente_id');
-            $table->foreign('paciente_id')->references('id')->on('pacientes');
+            $table->foreign('paciente_id')->references('id')->on('users');
+            $table->unsignedBigInteger('tipo_id');
+            $table->foreign('tipo_id')->references('id')->on('tipos');
 
         });
     }

@@ -1,4 +1,4 @@
-@extends('layouts.app', ["current" => "agenda"])
+@extends('layouts.app', ["current" => "consultas"])
 
 @section('body')
 
@@ -9,25 +9,14 @@
     </div>
     @endif
     <div>
+
         <!-- Tabela Principal -->
         <table class="table table-ordered table-hover" id="tabelaConsultas">
-
+            <h4> Consultas de {{ Auth::user()->name }} </h4>
             <thead>
-                <div class="form-row">
-                    <div class="form-group col-md-3">
-                        <label for="dataBusca">Data</label>
-                        <input type="date" id="dataBusca" class="form-control" value={{date('Y-m-d')}} onchange="carregarConsultas(loading)">
-                    </div>
-                    <div class="form-group col-md-5">
-                        <label for="name">Profissional</label>
-                        <select id="profissionais" class="form-control" onchange="carregarConsultas(loading)">
-                            <option selected>Selecione o profissional</option>
-                        </select>
-                    </div>
-                </div>
                 <tr>
                     <!--<th>#</th>-->
-                    <th>Paciente</th>
+                    <th>Profissional</th>
                     <th>Data / Horário</th>
                     <th>Status</th>
                     <th>Ações</th>
@@ -39,9 +28,6 @@
         </table>
 
     </div>
-    <div class="card-footer">
-        <a button class="btn btn-sm btn-primary" role="button" href="/consulta_detalhe">Nova Consulta</a>
-    </div>
 
 </div>
 
@@ -49,6 +35,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
+                 <input type="hidden" id="idPaciente" value="{{ Auth::user()->id }}" class="form-control">
                 <input type="hidden" id="idConsultaCancelamento" class="form-control">
                 <h5 class="modal-title">Confirmação</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -84,9 +71,8 @@
     }
 
     function carregarConsultas(callback) {
-        dataConsultas = $('#dataBusca').val();
         //console.log(dataConsultas);
-        $.getJSON('/api/consultaPorData/' + dataConsultas + '/' + $('#profissionais').val(), function(data) {
+        $.getJSON('/api/consultaPorPaciente/'+$('#idPaciente').val(), function(data) {
             $("#tabelaConsultas>tBody").empty();
             for (i = 0; i < data.length; i++) {
                 linha = montarLinha(data[i]);
@@ -111,23 +97,21 @@
 
         var linha = "<tr>" +
             " <!--<td>" + con.id + "</td>-->" +
-            "<td>" + con.paciente.name + "</td>" +
+            "<td>" + con.profissional.name+ "</td>" +
             "<td>" + data + " - " + horario + "</td>" +
             "<td>" + con.status + "</td>" +
             "<td>" +
             '<button class="btn btn-sm btn-success" style="margin: 0 5px;" onclick="confirmaConsulta(' + con.id + ')">Confirmar</button>' +
-            '<button class="btn btn-sm btn-danger" style="margin: 0 5px;" onclick="confirmaCancelamento(' + con.id + ',\'' + con.paciente.name + '\')">Cancelar</button>' +
-            '<a class="btn btn-sm btn-primary" style="margin: 0 5px;" href="consulta_detalhe/' + con.id + '">Acessar</a>' +
-            '<a class="btn btn-sm btn-secondary" style="margin: 0 5px;" href="../historico_paciente/' + con.paciente.id + '">Histórico</a>' +
+            '<button class="btn btn-sm btn-danger" style="margin: 0 5px;" onclick="confirmaCancelamento(' + con.id + ')">Cancelar</button>' +
             "</td>" +
             "</tr>";
         return linha;
     }
 
-    function confirmaCancelamento(id, name) {
-        console.log("Confirmação exclusão da consulta do paciente " + name);
+    function confirmaCancelamento(id) {
+        console.log("Confirmação exclusão da consulta");
         $('#idConsultaCancelamento').val(id);
-        $('#mensagemConfirmacao').text("Confirma o cancelamento da consulta do paciente " + name + "?");
+        $('#mensagemConfirmacao').text("Confirma o cancelamento da consulta?");
         $('#dlgDeleteConfirm').modal('show')
     }
 
@@ -149,15 +133,6 @@
         carregarConsultas(loading);
     }
 
-    function carregarProfissionais() {
-        $.getJSON('/api/profissionais', function(data) {
-            for (i = 0; i < data.length; i++) {
-                opcao = '<option value="' + data[i].id + '">' + data[i].name + '</option>';
-                $('#profissionais').append(opcao);
-            }
-        });
-    }
-
     function recarregaPagina() {
         document.location.reload(true);
 
@@ -165,7 +140,7 @@
 
     $(function() {
         //$('#dlgLoading').modal("show");
-        carregarProfissionais(loading);
+        carregarConsultas(loading);
         setInterval(function() {
             carregarConsultas(loading);
         }, 60000);

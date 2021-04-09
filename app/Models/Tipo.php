@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Convenio extends Model
+class Tipo extends Model
 {
+
     use HasFactory;
-    function pacientes(){
-        return $this->hasMany('App\Models\User')->orderBy('descricao', 'asc');
+    function tipo(){
+        return $this->belongsTo('App\Models\Tipo');
     }
 }

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Paciente;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class PacientesController extends Controller
 {
@@ -14,9 +15,10 @@ class PacientesController extends Controller
      */
     public function index()
     {
-        $pacs = Paciente::with(['convenio'])->get();
+        $pacs = User::with(['convenio'])->where('tipo','=', 'paciente')->get();
         return $pacs->toJson();
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -36,13 +38,14 @@ class PacientesController extends Controller
      */
     public function store(Request $request)
     {
-        $pac = new Paciente();
-        $pac->nome = $request->input('nome');
+        $pac = new User();
+        $pac->name = $request->input('name');
         $pac->sexo = $request->input('sexo');
         $pac->data_nascimento = $request->input('data_nascimento');
         $pac->convenio_id = $request->input('convenio_id');
         $pac->cpf = $request->input('cpf');
-        $pac->password = $request->input('cpf');
+        if ($request->input('password')== null) $pac->password = 'sem acesso';
+        else $pac->password = Hash::make($request->input('password'));
         $pac->rg = $request->input('rg');
         $pac->telefone1 = $request->input('telefone1');
         $pac->telefone2 = $request->input('telefone2');
@@ -55,9 +58,8 @@ class PacientesController extends Controller
         $pac->uf = $request->input('uf');
         $pac->email = $request->input('email');
         $pac->obs = $request->input('obs');
-        $pac->ativo = "1";
         $pac->save();
-        return json_encode($pac);
+        return redirect ('consultas');
     }
 
     /**
@@ -68,7 +70,7 @@ class PacientesController extends Controller
      */
     public function show($id)
     {
-        $pac = Paciente::find($id);
+        $pac = User::with(['convenio'])->where('id', '=', $id)->get();
         if (isset($pac)){
             return json_encode($pac);
         }
@@ -96,9 +98,9 @@ class PacientesController extends Controller
 
     public function update(Request $request, $id)
     {
-        $pac = Paciente::find($id);
+        $pac = User::find($id);
         if (isset($pac)){
-            $pac->nome = $request->input('nome');
+            $pac->name = $request->input('name');
             $pac->sexo = $request->input('sexo');
             $pac->data_nascimento = $request->input('data_nascimento');
             $pac->convenio_id = $request->input('convenio_id');
@@ -116,7 +118,6 @@ class PacientesController extends Controller
             $pac->uf = $request->input('uf');
             $pac->email = $request->input('email');
             $pac->obs = $request->input('obs');
-            $pac->ativo = "1";
             $pac->save();
             return json_encode($pac);
         }
@@ -132,7 +133,7 @@ class PacientesController extends Controller
      */
     public function destroy($id)
     {
-        $pac = Paciente::find($id);
+        $pac = User::find($id);
          if (isset($pac)){
            $pac->delete();
            return response('OK', 200);

@@ -9,6 +9,6 @@ class Especialidade extends Model
 {
     use HasFactory;
     function profissionais(){
-        return $this->hasMany('App\Models\Profissional')->orderBy('descricao', 'asc');
+        return $this->hasMany('App\Models\User')->orderBy('descricao', 'asc');
     }
 }

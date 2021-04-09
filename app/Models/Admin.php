@@ -7,15 +7,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class Admin extends Authenticatable
 {
     use HasFactory, Notifiable;
-    function convenio(){
-        return $this->belongsTo('App\Models\Convenio');
-    }
-    function especialidade(){
-        return $this->belongsTo('App\Models\Especialidade');
-    }
+
+    protected $guard = 'admin';
 
     /**
      * The attributes that are mass assignable.

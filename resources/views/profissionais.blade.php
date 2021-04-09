@@ -41,12 +41,12 @@
                 <div class="modal-body">
 
                     <div class="media">
-                        <img src="/storage/images/no_image.png" class="align-self-center mr-3" height="150" width="150" ondblclick="teste()" id="fotoProfissional">
+                        <!--<img src="/storage/images/no_image.png" class="align-self-center mr-3" height="150" width="150" ondblclick="teste()" id="fotoProfissional">-->
                         <div class="media-body">
                             <form class="form-horizontal">
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
-                                        <label for="nome">Nome</label>
+                                        <label for="name">Nome</label>
                                         <input type="text" class="form-control" id="nomeProfissional">
                                     </div>
 
@@ -150,7 +150,7 @@
 
                     <p>
                         <button type="submit" class="btn btn-primary">Salvar</button>
-                        <button type="cancel" class="btn btn-secondary" data-dismiss="modal">Agenda</button>
+                        <!--<button type="cancel" class="btn btn-secondary" data-dismiss="modal">Agenda</button>-->
                         <button type="cancel" class="btn btn-success" data-dismiss="modal">Fechar</button>
                     </p>
                 </div>
@@ -158,6 +158,7 @@
         </div>
     </div>
 </div>
+
 <div class="modal" tabindex="-1" role="dialog" id="dlgDeleteConfirm">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -234,12 +235,12 @@
     function montarLinha(pro) {
         var linha = "<tr>" +
             "<td>" + pro.id + "</td>" +
-            "<td>" + pro.nome + "</td>" +
+            "<td>" + pro.name + "</td>" +
             "<td>" + pro.especialidade.descricao + "</td>" +
             "<td>" +
             '<button class="btn btn-sm btn-primary" style="margin: 0 5px;" onclick="editar(' + pro.id + ')">Editar</button>' +
-            '<button class="btn btn-sm btn-secondary" style="margin: 0 5px;" onclick="editar(' + pro.id + ')">Agenda</button>' +
-            '<button class="btn btn-sm btn-danger" style="margin: 0 5px;" onclick="confirmaExclusao(' + pro.id + ',\'' + pro.nome + '\')">Excluir</button>' +
+            '<!--<button class="btn btn-sm btn-secondary" style="margin: 0 5px;" onclick="editar(' + pro.id + ')">Agenda</button>-->' +
+            '<button class="btn btn-sm btn-danger" style="margin: 0 5px;" onclick="confirmaExclusao(' + pro.id + ',\'' + pro.name + '\')">Excluir</button>' +
             "</td>" +
             "</tr>";
         return linha;
@@ -268,7 +269,7 @@
     function editar(id) {
         $.getJSON('api/profissionais/' + id, function(data) {
             $('#id').val(id);
-            $('#nomeProfissional').val(data.nome);
+            $('#nomeProfissional').val(data.name);
             $('#sexoProfissional').val(data.sexo);
             $('#dataNascimentoProfissional').val(data.data_nascimento);
             $('#especialidade').val(data.especialidade_id);
@@ -291,10 +292,10 @@
 
     function criarProfissional() {
         pac = {
-            nome: $('#nomeProfissional').val(),
+            name: $('#nomeProfissional').val(),
             sexo: $('#sexoProfissional').val(),
             data_nascimento: $('#dataNascimentoProfissional').val(),
-            convenio_id: $('#convenioProfissional').val(),
+            especialidade_id: $('#especialidade').val(),
             cpf: $('#cpfProfissional').val(),
             rg: $('#rgProfissional').val(),
             telefone1: $('#telefone1Profissional').val(),
@@ -322,7 +323,7 @@
     function salvarProfissional() {
         pro = {
             id: $("#id").val(),
-            nome: $('#nomeProfissional').val(),
+            name: $('#nomeProfissional').val(),
             sexo: $('#sexoProfissional').val(),
             data_nascimento: $('#dataNascimentoProfissional').val(),
             especialidade_id: $('#especialidade').val(),
@@ -368,10 +369,10 @@
     });
 
 
-    function confirmaExclusao(id, nome) {
-        console.log("Confirmação exclusão do Profissional " + nome);
+    function confirmaExclusao(id, name) {
+        console.log("Confirmação exclusão do Profissional " + name);
         $('#idProfissional').val(id);
-        $('#mensagemConfirmacao').text("Confirma a exclusão do(a) Profissional " + nome + "?");
+        $('#mensagemConfirmacao').text("Confirma a exclusão do(a) Profissional " + name + "?");
         $('#dlgDeleteConfirm').modal('show')
     }
 

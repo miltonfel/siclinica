@@ -14,12 +14,15 @@
           </div>
           @endif
           Seja bem vindo(a) ao Sistema de Gerenciamento de clínica<br>
-          Para iniciar, faça seu login
-
           <div>
             @guest
+            Para iniciar, faça seu login
             <a class="btn btn-primary btn-lg btn-block" href="/login">Login</a>
             <a class="btn btn-secondary btn-lg btn-block" href="/register">Registrar</a>
+            @endif
+
+            @auth
+            Você está logado
             @endif
 
           </div>

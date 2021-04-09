@@ -11,11 +11,14 @@ class CreateReceituarios extends Migration
      *
      * @return void
      */
+    //receituario é um banco para auxiliar na confecção das receitas, ficando pré cadastradas.
     public function up()
     {
         Schema::create('receituarios', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('titulo');
+            $table->text('descricao');
         });
     }
 

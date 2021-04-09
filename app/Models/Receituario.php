@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Paciente extends Model
+class Receituario extends Model
 {
     use HasFactory;
-    function convenio(){
-        return $this->belongsTo('App\Models\Convenio');
+    function receituario(){
+        return $this->belongsTo('App\Models\Receituario');
     }
 }

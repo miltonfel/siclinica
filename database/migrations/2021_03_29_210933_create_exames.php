@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTiposExames extends Migration
+class CreateExames extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateTiposExames extends Migration
      */
     public function up()
     {
-        Schema::create('tipos_exames', function (Blueprint $table) {
+        Schema::create('exames', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('descricao')->unique();
+            $table->string('titulo');
+            $table->text('descricao');
         });
     }
 
@@ -27,6 +28,6 @@ class CreateTiposExames extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tipos_exames');
+        Schema::dropIfExists('exames');
     }
 }

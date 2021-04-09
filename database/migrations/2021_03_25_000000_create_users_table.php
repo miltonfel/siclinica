@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePacientes extends Migration
+class CreateUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,15 @@ class CreatePacientes extends Migration
      */
     public function up()
     {
-        Schema::create('pacientes', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->string('nome');
+            $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('avatar')->nullable();
             $table->rememberToken();
+            $table->timestamps();
+            $table->timestamp('email_verified_at')->nullable();
             $table->string('cpf', 11)->unique();
             $table->string('rg', 25)->nullable();
             $table->string('sexo', 20);
@@ -35,9 +36,12 @@ class CreatePacientes extends Migration
             $table->string('uf', 2);
             $table->string('cep', 8);
             $table->string('obs')->nullable();
-            $table->boolean('ativo');
-            $table->unsignedBigInteger('convenio_id');
+            $table->string('tipo', 20)->default('paciente');
+            $table->unsignedBigInteger('convenio_id')->nullable();
             $table->foreign('convenio_id')->references('id')->on('convenios');
+            $table->unsignedBigInteger('especialidade_id')->nullable();
+            $table->foreign('especialidade_id')->references('id')->on('especialidades');
+
         });
     }
 
@@ -48,6 +52,6 @@ class CreatePacientes extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pacientes');
+        Schema::dropIfExists('users');
     }
 }
