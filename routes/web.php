@@ -88,3 +88,6 @@ Route::prefix('/admin')->group(function() {
     Route::post('/login', 'App\Http\Controllers\Auth\AdminLoginController@login')->name('admin.login.submit');
     Route::get('/', 'App\Http\Controllers\AdminController@index')->name('admin.dashboard');
 });
+
+Route::get('receitaPdf/{nomeProfissional}/{nomePaciente}/{texto}', 'App\Http\Controllers\pdfController@gerarReceita');
+Route::get('pedidoExamePdf/{nomeProfissional}/{nomePaciente}/{texto}', 'App\Http\Controllers\pdfController@gerarExame');

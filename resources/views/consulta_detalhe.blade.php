@@ -129,20 +129,19 @@
             <label for="obs">Receita</label>
             <textarea class="form-control" placeholder="Busque uma receita pre cadastrada ou digite" id="receita" rows="4"></textarea>
             <a class="btn btn-primary" onclick='carregarReceituarios()'>Buscar Receita</a>
-            <a class="btn btn-warning" onclick=''>Imprimir Receita</a>
+            <a class="btn btn-warning" onclick='imprimirReceita()'>Imprimir Receita</a>
           </div>
 
           <div class="form-group">
             <label for="obs">Pedido de exame</label>
             <textarea class="form-control" placeholder="Busque um exame pre cadastrado ou digite" id="exame" rows="4"></textarea>
             <a class="btn btn-primary" onclick='carregarExames()'>Buscar Exame</a>
-            <a class="btn btn-warning" onclick=''>Imprimir Pedido</a>
+            <a class="btn btn-warning" onclick='imprimirExame()'>Imprimir Pedido</a>
           </div>
 
 
           <p>
             <a href class="btn btn-success" onclick='finalizarConsulta({{$id}})'>FinalizarConsulta</a>
-            <a href class="btn btn-info" onclick='finalizarConsulta({{$id}})'>Gerar Atestado</a>
             <a href='\consultas' class="btn btn-danger">Sair</a>
           </p>
         </div>
@@ -303,12 +302,17 @@
         $('#dlgbuscareceita').modal('hide');
       }
 
+      function imprimirReceita(){
+        window.open ("../receitaPdf/" + $('#profissionais').val() + "/"+ $('#nomePaciente').val() + "/"+  $('#receita').val(), '_blank');
+      }
+
 
       function montarLinhaExame(exa) {
         var linha =
           '<button type="button" class="list-group-item list-group-item-action" onclick="preencherExame(' + exa.id + ' )">' + exa.titulo + '</button>';
         return linha;
       }
+
 
       function carregarExames() {
         console.log("Busca de exames");
@@ -334,6 +338,11 @@
         });
         $('#dlgbuscaexames').modal('hide');
       }
+
+      function imprimirExame(){
+        window.open ("../pedidoExamePdf/" + $('#profissionais').val() + "/"+ $('#nomePaciente').val() + "/"+  $('#exame').val(), '_blank');
+      }
+
 
       function recarregaPagina() {
         document.location.reload(true);
